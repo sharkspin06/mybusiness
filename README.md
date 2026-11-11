@@ -166,3 +166,14 @@ Settings › Data export lets owners and admins download CSVs and a full JSON co
 ```
 
 Copy the backup folder off the VPS too (for example to another server or cloud storage). Restore with `pg_restore -d mybusiness <file>`.
+
+## Deploying (Vercel)
+
+The repo deploys to Vercel as-is: `vercel.json` builds everything, serves `apps/web/dist`, and sends `/api/*` to one serverless function (`api/index.mjs`, which loads the pre-built Express app from `apps/api/dist/app.js`).
+
+1. Create a Postgres database (Vercel → Storage → Neon). Use the **pooled** connection string.
+2. Run the migrations against it from your computer: `DATABASE_URL="<url>" npm run db:migrate`.
+3. Import the repo in Vercel (root directory = repo root) and set these environment variables: `DATABASE_URL`, `NODE_ENV=production`, `WEB_ORIGIN=https://<project>.vercel.app`, `PUBLIC_URL` (same as `WEB_ORIGIN`), `TRUST_PROXY=1`.
+4. `WEB_ORIGIN` must match the site address exactly, or saves are refused. Redeploy after changing it.
+
+Note: the sign-in rate limit is kept in memory, so on Vercel it counts per serverless instance.

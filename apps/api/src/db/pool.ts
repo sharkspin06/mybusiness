@@ -6,7 +6,8 @@ pg.types.setTypeParser(20, (v) => Number(v));
 // DATE columns stay as "YYYY-MM-DD" text. Turning them into JS Dates would shift them a day in Singapore time.
 pg.types.setTypeParser(1082, (v) => v);
 
-export const pool = config.databaseUrl ? new pg.Pool({ connectionString: config.databaseUrl, max: 10 }) : null;
+// Small pool per instance on Vercel: each serverless instance opens its own connections.
+export const pool = config.databaseUrl ? new pg.Pool({ connectionString: config.databaseUrl, max: process.env.VERCEL ? 3 : 10 }) : null;
 
 export function requirePool(): pg.Pool {
   if (!pool) throw new Error('DATABASE_URL is not set. Copy .env.example to .env and fill it in.');
