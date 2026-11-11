@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<title>My Business Platform — desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F766E;text-decoration:none}a:hover{color:#115E59}
+h1,h2,h3,p{margin:0}
+.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nav{display:flex;align-items:center;gap:10px;height:36px;padding:0 10px;border-radius:6px;color:#374151;font:500 14px/1 Inter,system-ui,sans-serif;border:0;background:none;width:100%;text-align:left;cursor:pointer}
+.nav:hover{background:#EBEEF2}
+.nav.on{background:#E3F1EF;color:#0F5F59}
+.btn{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:6px;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid #D0D5DD;background:#fff;color:#111827;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#F7F8FA}
+.btn.pri{background:#0F766E;border-color:#0F766E;color:#fff}.btn.pri:hover{background:#115E59}
+.btn.ghost{border-color:transparent;background:transparent}.btn.ghost:hover{background:#F2F4F7}
+.btn.icon{width:36px;padding:0;justify-content:center}
+.btn.sm{height:30px;padding:0 10px;font-size:13px}
+.card{background:#fff;border:1px solid #E4E7EC;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-green{background:#ECFDF3;color:#067647}.b-blue{background:#EFF4FF;color:#1849A9}.b-grey{background:#F2F4F7;color:#475467}.b-amber{background:#FFFAEB;color:#93370D}.b-red{background:#FEF3F2;color:#B42318}.b-teal{background:#E3F1EF;color:#0F5F59}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;font-weight:500;color:#5B6474;padding:10px 12px;background:#F9FAFB;border-bottom:1px solid #E4E7EC;white-space:nowrap}
+.tbl td{padding:12px;border-bottom:1px solid #EEF0F3;white-space:nowrap;vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr.row{cursor:pointer}.tbl tr.row:hover td{background:#F9FAFB}
+.num{text-align:right !important;font-variant-numeric:tabular-nums}
+.muted{color:#5B6474}
+.sub{font-size:13px;color:#5B6474}
+.tabs{display:flex;gap:4px;border-bottom:1px solid #E4E7EC;overflow-x:auto}
+.tab{height:40px;padding:0 12px;border:0;background:none;font:500 14px/1 Inter,system-ui,sans-serif;color:#5B6474;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tab:hover{color:#111827}.tab.on{color:#111827;border-bottom-color:#0F766E}
+.seg{display:inline-flex;padding:3px;background:#F2F4F7;border-radius:8px;gap:2px}
+.seg button{height:30px;padding:0 12px;border:0;border-radius:6px;background:none;font:500 13px/1 Inter,system-ui,sans-serif;color:#5B6474;cursor:pointer;white-space:nowrap}
+.seg button.on{background:#fff;color:#111827;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.inp{height:36px;border:1px solid #D0D5DD;border-radius:6px;padding:0 12px;font:400 14px Inter,system-ui,sans-serif;color:#111827;background:#fff;width:100%}
+.inp:focus{outline:2px solid #99D2CB;outline-offset:0;border-color:#0F766E}
+.lbl{font-size:13px;font-weight:500;color:#344054;display:block;margin-bottom:6px}
+.chip{height:30px;padding:0 10px;border:1px dashed #D0D5DD;border-radius:999px;background:#fff;font:500 13px/1 Inter,system-ui,sans-serif;color:#344054;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.av{width:32px;height:32px;border-radius:50%;background:#E3F1EF;color:#0F5F59;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.av.sm{width:24px;height:24px;font-size:10px}
+.sec{font-size:12px;font-weight:600;color:#5B6474;letter-spacing:.02em;text-transform:uppercase;padding:0 10px}
+.kv{display:grid;grid-template-columns:160px minmax(0,1fr);gap:12px 16px;font-size:14px}
+.kv dt{color:#5B6474}.kv dd{margin:0}
+.ev{position:absolute;left:4px;right:4px;border-radius:6px;padding:6px 8px;font-size:12px;line-height:1.3;overflow:hidden}
+.ev.appt{background:#E3F1EF;color:#0F4F4A;border:1px solid #B5DCD6}
+.ev.int{background:#F2F4F7;color:#344054;border:1px solid #E4E7EC}
+.mc{min-height:104px;border-right:1px solid #EEF0F3;border-bottom:1px solid #EEF0F3;padding:6px 8px;font-size:12px}
+.mc .d{font-size:13px;font-weight:500;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.mc.out .d{color:#98A2B3}.mc.today .d{background:#0F766E;color:#fff}
+.pill{display:block;margin-top:4px;padding:2px 6px;border-radius:4px;background:#E3F1EF;color:#0F4F4A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill.int{background:#F2F4F7;color:#344054}
+.cb{width:18px;height:18px;border:1.5px solid #98A2B3;border-radius:4px;display:inline-block;flex:none}
+.cb.done{background:#0F766E;border-color:#0F766E}
+.tl{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #EEF0F3;font-size:14px}
+</style>
+</helmet>
+
+<div style="display: flex; flex-wrap: wrap; min-height: 980px; background: #FFFFFF;">
+
+<!-- ============ SIDEBAR ============ -->
+<aside style="flex: 1 1 240px; background: #F7F8FA; border-right: 1px solid #E4E7EC; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+  <button class="nav" style="height: 48px; margin-bottom: 8px;" aria-label="Switch business">
+    <span style="width: 28px; height: 28px; border-radius: 7px; background: #0F766E; color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">BW</span>
+    <span style="display: flex; flex-direction: column; gap: 3px; flex-grow: 1; min-width: 0;">
+      <span style="font-size: 14px; font-weight: 600; color: #111827;">Brightway Services</span>
+      <span style="font-size: 12px; color: #5B6474; font-weight: 400;">Growth plan</span>
+    </span>
+    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"></path></svg>
+  </button>
+
+  <button class="{{nav.dashboard}}" onClick="{{go.dashboard}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>Dashboard</button>
+  <button class="{{nav.customers}}" onClick="{{go.customers}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.8c1.9.7 3.1 2.4 3.5 5.2"></path></svg>Customers</button>
+  <button class="{{nav.quotes}}" onClick="{{go.quotes}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg>Quotations</button>
+  <button class="{{nav.calendar}}" onClick="{{go.calendar}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Calendar</button>
+  <button class="{{nav.tasks}}" onClick="{{go.tasks}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"></rect><path d="M8 12.5l2.7 2.7L16 9.8"></path></svg>Tasks<span style="margin-left: auto; font-size: 12px; color: #B42318; font-weight: 600;">1</span></button>
+  <button class="{{nav.documents}}" onClick="{{go.documents}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>Documents</button>
+
+  <div class="sec" style="margin-top: 20px; margin-bottom: 6px;">Pinned</div>
+  <button class="nav" onClick="{{go.documents}}" style="font-weight: 400;"><span style="width: 18px; text-align: center; color: #5B6474;">#</span>Price list 2026</button>
+  <button class="nav" onClick="{{go.documents}}" style="font-weight: 400;"><span style="width: 18px; text-align: center; color: #5B6474;">¶</span>Standard terms</button>
+  <button class="nav" onClick="{{go.customer}}" style="font-weight: 400;"><span class="av sm">TW</span>Tan Wei Ming</button>
+
+  <div style="flex-grow: 1;"></div>
+  <button class="{{nav.settings}}" onClick="{{go.settings}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg>Settings</button>
+  <div style="display: flex; align-items: center; gap: 10px; padding: 10px; border-top: 1px solid #E4E7EC; margin-top: 8px;">
+    <span class="av">ML</span>
+    <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500;">Mei Ling Tan</span><span style="font-size: 12px; color: #5B6474;">Owner</span></span>
+  </div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column;">
+
+  <!-- Top bar -->
+  <header style="height: 56px; border-bottom: 1px solid #E4E7EC; display: flex; align-items: center; gap: 12px; padding: 0 24px; flex-wrap: wrap;">
+    <nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 6px; font-size: 14px; min-width: 0;">
+      <sc-if value="{{crumbParent}}" hint-placeholder-val="{{ false }}">
+        <a href="#" onClick="{{crumbGo}}" style="color: #5B6474;">{{crumbParent}}</a><span style="color: #98A2B3;">/</span>
+      </sc-if>
+      <span style="font-weight: 600;">{{title}}</span>
+    </nav>
+    <div style="flex-grow: 1;"></div>
+    <label style="position: relative; width: 320px; max-width: 100%;">
+      <span style="position: absolute; left: 10px; top: 9px; color: #5B6474;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg></span>
+      <input class="inp" placeholder="Search customers, quotes, tasks…" aria-label="Search" style="padding-left: 36px; background: #F7F8FA; border-color: #E4E7EC;">
+      <span style="position: absolute; right: 8px; top: 8px; font-size: 11px; color: #5B6474; border: 1px solid #E4E7EC; border-radius: 4px; padding: 2px 5px; background: #fff;">Ctrl K</span>
+    </label>
+    <button class="btn pri" onClick="{{go.quoteNew}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New</button>
+    <button class="btn ghost icon" aria-label="Notifications"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg></button>
+  </header>
+
+  <main style="padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px; max-width: 1280px; width: 100%;">
+
+  <!-- ============ DASHBOARD ============ -->
+  <sc-if value="{{is.dashboard}}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap;">
+        <div style="flex-grow: 1;">
+          <p class="sub">Wednesday, 11/11/2026</p>
+          <h1 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Good afternoon, Mei Ling</h1>
+        </div>
+        <button class="btn" onClick="{{go.calendar}}">New appointment</button>
+        <button class="btn pri" onClick="{{go.quoteNew}}">New quotation</button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;">
+            <span class="sub">{{k.label}}</span>
+            <span style="font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums;">{{k.value}}</span>
+            <span style="font-size: 12px; color: #5B6474;">{{k.note}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="card" style="flex: 2 1 520px; min-width: 0; overflow: hidden;">
+          <div style="display: flex; align-items: center; padding: 14px 16px;"><h2 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Recent quotations</h2><a href="#" onClick="{{go.quotes}}" style="font-size: 14px; font-weight: 500;">View all</a></div>
+          <div style="overflow-x: auto;">
+          <table class="tbl">
+            <thead><tr><th>Quote</th><th>Customer</th><th>Date</th><th class="num">Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <sc-for list="{{quotesShort}}" as="q" hint-placeholder-count="5">
+                <tr class="row" onClick="{{go.customer}}"><td style="font-weight: 500;">{{q.no}}</td><td>{{q.cust}}</td><td class="muted">{{q.date}}</td><td class="num">{{q.amt}}</td><td><span class="{{q.bc}}">{{q.status}}</span></td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+          </div>
+        </section>
+        <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+          <section class="card" style="padding: 14px 16px;">
+            <div style="display: flex; align-items: center; margin-bottom: 8px;"><h2 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Today</h2><a href="#" onClick="{{go.calendar}}" style="font-size: 14px; font-weight: 500;">Calendar</a></div>
+            <sc-for list="{{today}}" as="e" hint-placeholder-count="2">
+              <div style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #EEF0F3;">
+                <span style="font-size: 13px; font-weight: 600; width: 48px; font-variant-numeric: tabular-nums;">{{e.time}}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500;">{{e.title}}</span><span class="sub">{{e.where}}</span></span>
+              </div>
+            </sc-for>
+          </section>
+          <section class="card" style="padding: 14px 16px;">
+            <div style="display: flex; align-items: center; margin-bottom: 8px;"><h2 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Tasks due soon</h2><a href="#" onClick="{{go.tasks}}" style="font-size: 14px; font-weight: 500;">All tasks</a></div>
+            <sc-for list="{{tasksSoon}}" as="t" hint-placeholder-count="3">
+              <div style="display: flex; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid #EEF0F3;">
+                <span class="cb"></span>
+                <span style="flex-grow: 1; font-size: 14px;">{{t.title}}</span>
+                <span style="font-size: 12px; font-weight: 500; color: {{t.dueColor}};">{{t.due}}</span>
+              </div>
+            </sc-for>
+          </section>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ CUSTOMERS ============ -->
+  <sc-if value="{{is.customers}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="flex-grow: 1;"><h1 style="font-size: 24px; font-weight: 600;">Customers</h1><p class="sub" style="margin-top: 4px;">48 customers · 6 leads</p></div>
+        <button class="btn">Import CSV</button>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add customer</button>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <div class="seg"><button class="on">All</button><button>Active</button><button>Leads</button><button>Inactive</button></div>
+        <span class="chip">+ Status</span><span class="chip">+ Tag</span><span class="chip">+ Postal district</span>
+        <div style="flex-grow: 1;"></div>
+        <input class="inp" placeholder="Search name, phone, company" aria-label="Search customers" style="width: 260px;">
+      </div>
+      <div class="card" style="overflow: hidden;">
+        <div style="overflow-x: auto;">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Status</th><th>Last activity</th><th class="num">Outstanding</th></tr></thead>
+          <tbody>
+            <sc-for list="{{customers}}" as="c" hint-placeholder-count="7">
+              <tr class="row" onClick="{{go.customer}}">
+                <td><span style="display: flex; align-items: center; gap: 10px;"><span class="av">{{c.ini}}</span><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">{{c.name}}</span><span class="sub">{{c.co}}</span></span></span></td>
+                <td style="font-variant-numeric: tabular-nums;">{{c.phone}}</td>
+                <td class="muted">{{c.email}}</td>
+                <td><span class="{{c.bc}}">{{c.status}}</span></td>
+                <td class="muted">{{c.last}}</td>
+                <td class="num">{{c.owe}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-top: 1px solid #E4E7EC; font-size: 13px; color: #5B6474;"><span style="flex-grow: 1;">Showing 1–7 of 48</span><button class="btn sm">Previous</button><button class="btn sm">Next</button></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ CUSTOMER PROFILE ============ -->
+  <sc-if value="{{is.customer}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+        <span class="av" style="width: 56px; height: 56px; font-size: 18px;">TW</span>
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><h1 style="font-size: 24px; font-weight: 600;">Tan Wei Ming</h1><span class="badge b-green">Active</span><span class="badge b-grey">Homeowner</span></div>
+          <p class="sub">+65 9123 4567 · weiming@example.sg · Ang Mo Kio, Singapore 560123</p>
+        </div>
+        <button class="btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"></path></svg>WhatsApp</button>
+        <button class="btn">Edit</button>
+        <button class="btn pri" onClick="{{go.quoteNew}}">New quotation</button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+        <div class="card" style="padding: 12px 14px;"><p class="sub">Total quoted</p><p style="font-size: 18px; font-weight: 600; margin-top: 4px;">S$14,551.55</p></div>
+        <div class="card" style="padding: 12px 14px;"><p class="sub">Paid</p><p style="font-size: 18px; font-weight: 600; margin-top: 4px;">S$3,270.00</p></div>
+        <div class="card" style="padding: 12px 14px;"><p class="sub">Outstanding</p><p style="font-size: 18px; font-weight: 600; margin-top: 4px; color: #B42318;">S$2,450.00</p></div>
+        <div class="card" style="padding: 12px 14px;"><p class="sub">Next appointment</p><p style="font-size: 18px; font-weight: 600; margin-top: 4px;">13/11/2026 10:00</p></div>
+      </div>
+      <div class="tabs" role="tablist">
+        <sc-for list="{{ptabs}}" as="t" hint-placeholder-count="6">
+          <button class="tab {{t.on}}" role="tab" onClick="{{t.pick}}">{{t.label}}</button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{pt.info}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+          <section class="card" style="flex: 2 1 420px; padding: 20px;">
+            <h2 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Details</h2>
+            <dl class="kv" style="margin: 0;">
+              <dt>Full name</dt><dd>Tan Wei Ming</dd>
+              <dt>Mobile</dt><dd>+65 9123 4567</dd>
+              <dt>Email</dt><dd>weiming@example.sg</dd>
+              <dt>Address</dt><dd>Blk 123 Ang Mo Kio Ave 3, #05-67<br>Singapore 560123</dd>
+              <dt>Customer type</dt><dd>Individual (homeowner)</dd>
+              <dt>Preferred contact</dt><dd>WhatsApp</dd>
+              <dt>Customer since</dt><dd>14/03/2025</dd>
+              <dt>Tags</dt><dd style="display: flex; gap: 6px;"><span class="badge b-teal">Renovation</span><span class="badge b-grey">HDB</span></dd>
+            </dl>
+          </section>
+          <section class="card" style="flex: 1 1 280px; padding: 20px;">
+            <h2 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Notes</h2>
+            <p style="font-size: 14px; line-height: 1.6; color: #344054;">Prefers weekday mornings. Lift lobby access needs a booking with the town council 3 working days ahead.</p>
+          </section>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.quotes}}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="overflow-x: auto;">
+          <table class="tbl"><thead><tr><th>Quote</th><th>Title</th><th>Date</th><th class="num">Amount</th><th>Status</th></tr></thead>
+          <tbody><sc-for list="{{custQuotes}}" as="q" hint-placeholder-count="3"><tr class="row"><td style="font-weight: 500;">{{q.no}}</td><td>{{q.title}}</td><td class="muted">{{q.date}}</td><td class="num">{{q.amt}}</td><td><span class="{{q.bc}}">{{q.status}}</span></td></tr></sc-for></tbody></table>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.appts}}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="overflow-x: auto;">
+          <table class="tbl"><thead><tr><th>Date</th><th>Time</th><th>Appointment</th><th>Assigned to</th><th>Status</th></tr></thead>
+          <tbody><sc-for list="{{custAppts}}" as="a" hint-placeholder-count="3"><tr class="row"><td style="font-weight: 500;">{{a.date}}</td><td>{{a.time}}</td><td>{{a.title}}</td><td>{{a.who}}</td><td><span class="{{a.bc}}">{{a.status}}</span></td></tr></sc-for></tbody></table>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.pay}}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="overflow-x: auto;">
+          <table class="tbl"><thead><tr><th>Reference</th><th>Date</th><th>Method</th><th class="num">Amount</th><th>Status</th></tr></thead>
+          <tbody><sc-for list="{{custPays}}" as="p" hint-placeholder-count="3"><tr class="row"><td style="font-weight: 500;">{{p.ref}}</td><td class="muted">{{p.date}}</td><td>{{p.method}}</td><td class="num">{{p.amt}}</td><td><span class="{{p.bc}}">{{p.status}}</span></td></tr></sc-for></tbody></table>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.docs}}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
+          <sc-for list="{{custDocs}}" as="d" hint-placeholder-count="3">
+            <div class="card" style="padding: 14px; display: flex; gap: 12px; align-items: center;">
+              <span style="width: 40px; height: 40px; border-radius: 8px; background: #F2F4F7; color: #475467; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center;">{{d.kind}}</span>
+              <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;"><span style="font-size: 14px; font-weight: 500;">{{d.name}}</span><span class="sub">{{d.meta}}</span></span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.hist}}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="padding: 4px 20px;">
+          <sc-for list="{{custHist}}" as="h" hint-placeholder-count="5">
+            <div class="tl"><span style="width: 120px; flex: none; color: #5B6474; font-size: 13px;">{{h.when}}</span><span style="flex-grow: 1;">{{h.what}}</span><span class="sub">{{h.who}}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ============ QUOTATIONS LIST ============ -->
+  <sc-if value="{{is.quotes}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="flex-grow: 1;"><h1 style="font-size: 24px; font-weight: 600;">Quotations</h1><p class="sub" style="margin-top: 4px;">7 open · S$18,420.00 awaiting reply</p></div>
+        <button class="btn pri" onClick="{{go.quoteNew}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New quotation</button>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <div class="seg"><button class="on">All</button><button>Draft</button><button>Sent</button><button>Accepted</button><button>Expired</button></div>
+        <span class="chip">+ Customer</span><span class="chip">+ Date range</span>
+      </div>
+      <div class="card" style="overflow-x: auto;">
+        <table class="tbl">
+          <thead><tr><th>Quote</th><th>Customer</th><th>Title</th><th>Issued</th><th>Valid until</th><th class="num">Total (incl. GST)</th><th>Status</th></tr></thead>
+          <tbody>
+            <sc-for list="{{quotes}}" as="q" hint-placeholder-count="6">
+              <tr class="row" onClick="{{go.quoteNew}}"><td style="font-weight: 500;">{{q.no}}</td><td>{{q.cust}}</td><td class="muted">{{q.title}}</td><td class="muted">{{q.date}}</td><td class="muted">{{q.valid}}</td><td class="num">{{q.amt}}</td><td><span class="{{q.bc}}">{{q.status}}</span></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ QUOTATION BUILDER ============ -->
+  <sc-if value="{{is.quoteNew}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="flex-grow: 1; display: flex; align-items: center; gap: 10px;"><h1 style="font-size: 24px; font-weight: 600;">Quotation Q-2026-0143</h1><span class="badge b-grey">Draft</span></div>
+        <button class="btn">Save draft</button>
+        <button class="btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"></path></svg>Download PDF</button>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"></path></svg>Share on WhatsApp</button>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+        <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+            <div>
+              <span class="lbl">Customer</span>
+              <button class="inp" style="height: auto; padding: 10px 12px; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer;">
+                <span class="av">TW</span>
+                <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 500;">Tan Wei Ming</span><span class="sub">+65 9123 4567 · Blk 123 Ang Mo Kio Ave 3, #05-67, S560123</span></span>
+                <span style="font-size: 13px; color: #0F766E; font-weight: 500;">Change</span>
+              </button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;">
+              <label><span class="lbl">Quote title</span><input class="inp" value="Kitchen cabinet refurbishment"></label>
+              <label><span class="lbl">Issue date</span><input class="inp" value="11/11/2026"></label>
+              <label><span class="lbl">Valid until</span><input class="inp" value="11/12/2026"></label>
+            </div>
+          </section>
+
+          <section class="card" style="overflow: hidden;">
+            <div style="padding: 14px 16px; display: flex; align-items: center;"><h2 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Line items</h2><span class="sub">Prices in SGD, before GST</span></div>
+            <div style="overflow-x: auto;">
+            <table class="tbl">
+              <thead><tr><th style="width: 32px;">#</th><th>Service</th><th>Description</th><th class="num" style="width: 70px;">Qty</th><th class="num" style="width: 120px;">Unit price</th><th class="num" style="width: 120px;">Amount</th><th style="width: 40px;"></th></tr></thead>
+              <tbody>
+                <sc-for list="{{lines}}" as="l" hint-placeholder-count="4">
+                  <tr><td class="muted">{{l.n}}</td><td style="font-weight: 500;">{{l.svc}}</td><td class="muted" style="white-space: normal; min-width: 200px;">{{l.desc}}</td><td class="num">{{l.qty}}</td><td class="num">{{l.price}}</td><td class="num" style="font-weight: 500;">{{l.amt}}</td><td><button class="btn ghost icon sm" aria-label="Remove line" style="width: 30px;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></td></tr>
+                </sc-for>
+              </tbody>
+            </table>
+            </div>
+            <div style="padding: 12px 16px; border-top: 1px solid #E4E7EC; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn sm" onClick="{{addLine}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M12 5v14M5 12h14"></path></svg>Add line item</button>
+              <button class="btn sm ghost">Add from price list</button>
+            </div>
+          </section>
+
+          <section class="card" style="padding: 20px;">
+            <label><span class="lbl">Notes &amp; terms (shown on PDF)</span>
+            <textarea class="inp" style="height: 96px; padding: 10px 12px; resize: vertical; line-height: 1.5;">50% deposit on confirmation, balance on completion. Payment by PayNow (UEN 201912345K) or bank transfer. Quotation valid for 30 days.</textarea></label>
+          </section>
+        </div>
+
+        <aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+            <h2 style="font-size: 16px; font-weight: 600;">Summary</h2>
+            <div style="display: flex;"><span class="muted" style="flex-grow: 1;">Subtotal</span><span class="num">{{tot.sub}}</span></div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span class="muted" style="flex-grow: 1;">Discount</span>
+              <div class="seg"><sc-for list="{{discOpts}}" as="o" hint-placeholder-count="3"><button class="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div>
+            </div>
+            <div style="display: flex;"><span class="muted" style="flex-grow: 1;">Discount amount</span><span class="num">{{tot.disc}}</span></div>
+            <div style="display: flex;"><span class="muted" style="flex-grow: 1;">GST 9%</span><span class="num">{{tot.gst}}</span></div>
+            <div style="display: flex; align-items: baseline; border-top: 1px solid #E4E7EC; padding-top: 12px;"><span style="flex-grow: 1; font-weight: 600;">Total (SGD)</span><span class="num" style="font-size: 22px; font-weight: 700;">{{tot.total}}</span></div>
+          </section>
+          <section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="font-size: 16px; font-weight: 600;">Share</h2>
+            <div style="background: #F7F8FA; border: 1px solid #E4E7EC; border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.5; color: #344054;">Hi Wei Ming, here is your quotation Q-2026-0143 for {{tot.total}} (incl. GST). PDF: brightway.example/q/0143 — Mei Ling, Brightway Services</div>
+            <button class="btn pri" style="justify-content: center;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"></path></svg>Send to +65 9123 4567 on WhatsApp</button>
+            <button class="btn" style="justify-content: center;">Email PDF</button>
+          </section>
+          <section class="card" style="padding: 16px;">
+            <p class="sub" style="margin-bottom: 10px;">PDF preview (A4)</p>
+            <div style="aspect-ratio: 210 / 297; border: 1px solid #E4E7EC; border-radius: 4px; padding: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 8px; color: #344054;">
+              <div style="display: flex; justify-content: space-between;"><span style="font-weight: 700; font-size: 10px; color: #0F766E;">Brightway Services Pte Ltd</span><span style="font-weight: 700; font-size: 10px;">QUOTATION</span></div>
+              <span>UEN 201912345K · GST Reg. 201912345K</span>
+              <span>To: Tan Wei Ming · Q-2026-0143 · 11/11/2026</span>
+              <div style="height: 1px; background: #E4E7EC;"></div>
+              <sc-for list="{{lines}}" as="l" hint-placeholder-count="4"><div style="display: flex;"><span style="flex-grow: 1;">{{l.svc}}</span><span>{{l.amt}}</span></div></sc-for>
+              <div style="height: 1px; background: #E4E7EC;"></div>
+              <div style="display: flex; font-weight: 700;"><span style="flex-grow: 1;">Total incl. GST</span><span>{{tot.total}}</span></div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ CALENDAR ============ -->
+  <sc-if value="{{is.calendar}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <h1 style="font-size: 24px; font-weight: 600; margin-right: 8px;">Calendar</h1>
+        <button class="btn sm">Today</button>
+        <button class="btn ghost icon sm" aria-label="Previous" style="width: 30px;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+        <button class="btn ghost icon sm" aria-label="Next" style="width: 30px;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+        <span style="font-size: 16px; font-weight: 600;">{{calLabel}}</span>
+        <div style="flex-grow: 1;"></div>
+        <div class="seg"><sc-for list="{{calOpts}}" as="o" hint-placeholder-count="3"><button class="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New appointment</button>
+      </div>
+
+      <sc-if value="{{cv.week}}" hint-placeholder-val="{{ true }}">
+        <div class="card" style="overflow-x: auto;">
+          <div style="min-width: 760px;">
+            <div style="display: grid; grid-template-columns: 56px repeat(7, minmax(0, 1fr)); border-bottom: 1px solid #E4E7EC;">
+              <span></span>
+              <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+                <div style="padding: 10px 8px; text-align: center; border-left: 1px solid #EEF0F3;"><span class="sub">{{d.dow}}</span> <span style="font-weight: 600; color: {{d.color}};">{{d.date}}</span></div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: 56px repeat(7, minmax(0, 1fr));">
+              <div><sc-for list="{{hours}}" as="h" hint-placeholder-count="10"><div style="height: 48px; font-size: 11px; color: #5B6474; text-align: right; padding: 2px 8px 0 0;">{{h}}</div></sc-for></div>
+              <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+                <div style="position: relative; height: 480px; border-left: 1px solid #EEF0F3; background-image: repeating-linear-gradient(to bottom, #EEF0F3 0, #EEF0F3 1px, transparent 1px, transparent 48px); background-color: {{d.bg}};">
+                  <sc-for list="{{d.events}}" as="e" hint-placeholder-count="1">
+                    <div class="{{e.cls}}" style="{{e.pos}}"><strong style="font-weight: 600; display: block;">{{e.title}}</strong>{{e.time}}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{cv.day}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+          <div class="card" style="flex: 2 1 480px; min-width: 0; display: grid; grid-template-columns: 56px minmax(0, 1fr); padding: 8px 0;">
+            <div><sc-for list="{{hours}}" as="h" hint-placeholder-count="10"><div style="height: 48px; font-size: 11px; color: #5B6474; text-align: right; padding: 2px 8px 0 0;">{{h}}</div></sc-for></div>
+            <div style="position: relative; height: 480px; border-left: 1px solid #EEF0F3; background-image: repeating-linear-gradient(to bottom, #EEF0F3 0, #EEF0F3 1px, transparent 1px, transparent 48px);">
+              <sc-for list="{{todayEvents}}" as="e" hint-placeholder-count="2">
+                <div class="{{e.cls}}" style="{{e.pos}}"><strong style="font-weight: 600; display: block; font-size: 13px;">{{e.title}}</strong>{{e.time}} · {{e.where}}</div>
+              </sc-for>
+              <div style="position: absolute; left: 0; right: 0; top: 312px; height: 2px; background: #B42318;" aria-hidden="true"></div>
+            </div>
+          </div>
+          <section class="card" style="flex: 1 1 280px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+            <span class="badge b-teal" style="align-self: flex-start;">Appointment</span>
+            <h2 style="font-size: 18px; font-weight: 600;">Site visit — Ahmad Bin Yusof</h2>
+            <dl class="kv" style="grid-template-columns: 90px minmax(0, 1fr); margin: 0;">
+              <dt>When</dt><dd>11/11/2026, 15:00–16:30</dd>
+              <dt>Where</dt><dd>22 Tuas Ave 8, Singapore 639238</dd>
+              <dt>Assigned</dt><dd>Daniel Lee</dd>
+              <dt>Reminder</dt><dd>WhatsApp, 1 day before · Email, 1 hour before</dd>
+            </dl>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;"><button class="btn sm">Reschedule</button><button class="btn sm">Open customer</button></div>
+          </section>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{cv.month}}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="overflow-x: auto;">
+          <div style="min-width: 760px;">
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-bottom: 1px solid #E4E7EC;">
+              <sc-for list="{{dows}}" as="w" hint-placeholder-count="7"><span style="padding: 8px; font-size: 12px; font-weight: 500; color: #5B6474;">{{w}}</span></sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));">
+              <sc-for list="{{month}}" as="c" hint-placeholder-count="42">
+                <div class="{{c.cls}}"><span class="d">{{c.d}}</span>
+                  <sc-for list="{{c.events}}" as="e" hint-placeholder-count="1"><span class="{{e.cls}}">{{e.t}}</span></sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+      <p class="sub">Drag an appointment to reschedule. Reminders go out by WhatsApp or email.</p>
+    </div>
+  </sc-if>
+
+  <!-- ============ TASKS ============ -->
+  <sc-if value="{{is.tasks}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div style="flex-grow: 1;"><h1 style="font-size: 24px; font-weight: 600;">Tasks</h1><p class="sub" style="margin-top: 4px;">6 open · 1 overdue</p></div>
+        <div class="seg"><sc-for list="{{taskOpts}}" as="o" hint-placeholder-count="2"><button class="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New task</button>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;"><span class="chip">+ Assignee</span><span class="chip">+ Priority</span><span class="chip">+ Due date</span></div>
+      <sc-if value="{{tv.list}}" hint-placeholder-val="{{ true }}">
+        <div class="card" style="overflow-x: auto;">
+          <table class="tbl">
+            <thead><tr><th style="width: 36px;"></th><th>Task</th><th>Priority</th><th>Deadline</th><th>Assignee</th><th>Related</th><th>Status</th></tr></thead>
+            <tbody>
+              <sc-for list="{{tasks}}" as="t" hint-placeholder-count="6">
+                <tr class="row"><td><span class="{{t.cb}}"></span></td><td style="font-weight: 500;">{{t.title}}</td><td><span class="{{t.pc}}">{{t.pri}}</span></td><td style="color: {{t.dueColor}}; font-weight: 500;">{{t.due}}</td><td><span style="display: flex; align-items: center; gap: 8px;"><span class="av sm">{{t.ini}}</span>{{t.who}}</span></td><td class="muted">{{t.rel}}</td><td><span class="{{t.sc}}">{{t.status}}</span></td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </sc-if>
+      <sc-if value="{{tv.board}}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: start;">
+          <sc-for list="{{board}}" as="col" hint-placeholder-count="3">
+            <div style="background: #F7F8FA; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 14px; font-weight: 600;">{{col.name}}</span><span class="sub">{{col.count}}</span></div>
+              <sc-for list="{{col.items}}" as="t" hint-placeholder-count="2">
+                <div class="card" style="padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+                  <span style="font-size: 14px; font-weight: 500;">{{t.title}}</span>
+                  <div style="display: flex; align-items: center; gap: 8px;"><span class="{{t.pc}}">{{t.pri}}</span><span style="font-size: 12px; color: {{t.dueColor}}; flex-grow: 1;">{{t.due}}</span><span class="av sm">{{t.ini}}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ============ DOCUMENTS ============ -->
+  <sc-if value="{{is.documents}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <h1 style="font-size: 24px; font-weight: 600; flex-grow: 1;">Documents</h1>
+        <button class="btn">Upload file</button>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New</button>
+      </div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start;">
+        <section class="card" style="flex: 1 1 300px; min-width: 0; padding: 8px;">
+          <div class="seg" style="margin: 4px 4px 8px;"><button class="on">All</button><button>Docs</button><button>Tables</button><button>Notes</button><button>Files</button></div>
+          <sc-for list="{{docs}}" as="d" hint-placeholder-count="6">
+            <button class="{{d.cls}}" style="height: auto; padding: 10px; gap: 12px;">
+              <span style="width: 32px; height: 32px; border-radius: 6px; background: #F2F4F7; color: #475467; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex: none;">{{d.kind}}</span>
+              <span style="display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="font-size: 14px; font-weight: 500; color: #111827;">{{d.name}}</span><span style="font-size: 12px; color: #5B6474; font-weight: 400;">{{d.meta}}</span></span>
+            </button>
+          </sc-for>
+        </section>
+        <article class="card" style="flex: 2 1 520px; min-width: 0; padding: 32px 40px; display: flex; flex-direction: column; gap: 16px;">
+          <p class="sub">Doc · Edited 09/11/2026 by Mei Ling Tan</p>
+          <h2 style="font-size: 28px; font-weight: 700; letter-spacing: -0.01em;">Standard terms &amp; conditions</h2>
+          <p style="font-size: 15px; line-height: 1.65; color: #344054;">These terms apply to every quotation issued by Brightway Services Pte Ltd unless the quotation says otherwise. All prices are in Singapore dollars and exclude GST, which is charged at the prevailing rate.</p>
+          <h3 style="font-size: 18px; font-weight: 600; margin-top: 8px;">Payment schedule</h3>
+          <div style="border: 1px solid #E4E7EC; border-radius: 8px; overflow-x: auto;">
+            <table class="tbl"><thead><tr><th>Milestone</th><th class="num">Share</th><th>When</th></tr></thead>
+            <tbody><tr><td>Deposit</td><td class="num">50%</td><td class="muted">On confirmation</td></tr><tr><td>Progress payment</td><td class="num">40%</td><td class="muted">On delivery of materials</td></tr><tr><td>Completion</td><td class="num">10%</td><td class="muted">Within 7 days of handover</td></tr></tbody></table>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 600; margin-top: 8px;">Cancellation</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #344054;">Deposits are refundable up to 3 working days after confirmation, less the cost of any materials already ordered.</p>
+        </article>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ SETTINGS ============ -->
+  <sc-if value="{{is.settings}}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <h1 style="font-size: 24px; font-weight: 600;">Settings</h1>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+        <nav style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; gap: 2px;" aria-label="Settings sections">
+          <button class="nav on">Business profile</button><button class="nav">Users &amp; permissions</button><button class="nav">Quotation &amp; GST</button><button class="nav">Reminders</button><button class="nav">Subscription</button><button class="nav">Data export &amp; backups</button>
+        </nav>
+        <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+            <div><h2 style="font-size: 16px; font-weight: 600;">Business profile</h2><p class="sub" style="margin-top: 4px;">Shown on quotations, invoices and WhatsApp messages.</p></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <label><span class="lbl">Registered name</span><input class="inp" value="Brightway Services Pte Ltd"></label>
+              <label><span class="lbl">UEN</span><input class="inp" value="201912345K"></label>
+              <label><span class="lbl">Phone</span><input class="inp" value="+65 6123 4567"></label>
+              <label><span class="lbl">Email</span><input class="inp" value="hello@brightway.example"></label>
+              <label style="grid-column: 1 / -1;"><span class="lbl">Address</span><input class="inp" value="10 Ubi Crescent, #03-21, Singapore 408564"></label>
+              <label><span class="lbl">GST registration</span><span style="display: flex; align-items: center; gap: 10px; height: 36px;"><span style="width: 36px; height: 20px; border-radius: 999px; background: #0F766E; position: relative; display: inline-block;"><span style="position: absolute; right: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff;"></span></span><span style="font-size: 14px;">Registered · 9%</span></span></label>
+              <label><span class="lbl">GST reg. no.</span><input class="inp" value="201912345K"></label>
+              <label><span class="lbl">Currency</span><input class="inp" value="SGD (S$)" disabled style="background: #F7F8FA; color: #5B6474;"></label>
+              <label><span class="lbl">Date format</span><input class="inp" value="DD/MM/YYYY" disabled style="background: #F7F8FA; color: #5B6474;"></label>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 8px;"><button class="btn">Cancel</button><button class="btn pri">Save changes</button></div>
+          </section>
+          <section class="card" style="overflow: hidden;">
+            <div style="padding: 16px 20px; display: flex; align-items: center;"><h2 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Users &amp; permissions</h2><button class="btn sm">Invite user</button></div>
+            <div style="overflow-x: auto;"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Last active</th></tr></thead>
+            <tbody>
+              <tr><td><span style="display: flex; align-items: center; gap: 8px;"><span class="av sm">ML</span>Mei Ling Tan</span></td><td class="muted">meiling@brightway.example</td><td><span class="badge b-teal">Owner</span></td><td class="muted">Now</td></tr>
+              <tr><td><span style="display: flex; align-items: center; gap: 8px;"><span class="av sm">DL</span>Daniel Lee</span></td><td class="muted">daniel@brightway.example</td><td><span class="badge b-blue">Admin</span></td><td class="muted">11/11/2026</td></tr>
+              <tr><td><span style="display: flex; align-items: center; gap: 8px;"><span class="av sm">SA</span>Siti Aminah</span></td><td class="muted">siti@brightway.example</td><td><span class="badge b-grey">Staff</span></td><td class="muted">10/11/2026</td></tr>
+            </tbody></table></div>
+          </section>
+          <section class="card" style="padding: 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            <div style="flex-grow: 1;"><h2 style="font-size: 16px; font-weight: 600;">Data export &amp; backups</h2><p class="sub" style="margin-top: 4px;">Last automatic backup 11/11/2026, 03:00. Your data stays yours: export everything at any time.</p></div>
+            <button class="btn">Export CSV</button><button class="btn">Download full backup</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  </main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const screen = st.screen || 'dashboard';
+    const ptab = st.ptab || 'info';
+    const cal = st.cal || 'week';
+    const tview = st.tview || 'list';
+    const disc = st.disc == null ? 5 : st.disc;
+    const extra = st.extra || 0;
+    const set = (o) => () => this.setState(o);
+    const money = (n) => 'S$' + n.toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const B = { Active: 'green', Accepted: 'green', Paid: 'green', Done: 'green', Completed: 'green', Sent: 'blue', 'In progress': 'blue', Confirmed: 'blue', Draft: 'grey', Inactive: 'grey', Low: 'grey', 'To do': 'grey', Lead: 'teal', Medium: 'amber', Pending: 'amber', Expired: 'red', Overdue: 'red', High: 'red' };
+    const bc = (s) => 'badge b-' + (B[s] || 'grey');
+
+    const screens = ['dashboard', 'customers', 'customer', 'quotes', 'quoteNew', 'calendar', 'tasks', 'documents', 'settings'];
+    const parentOf = { customer: 'customers', quoteNew: 'quotes' };
+    const go = {}, is = {}, nav = {};
+    screens.forEach((s) => { go[s] = set({ screen: s }); is[s] = screen === s; });
+    screens.forEach((s) => { nav[s] = (screen === s || parentOf[screen] === s) ? 'nav on' : 'nav'; });
+    const titles = { dashboard: 'Dashboard', customers: 'Customers', customer: 'Tan Wei Ming', quotes: 'Quotations', quoteNew: 'New quotation', calendar: 'Calendar', tasks: 'Tasks', documents: 'Documents', settings: 'Settings' };
+    const crumbParent = parentOf[screen] ? titles[parentOf[screen]] : '';
+    const crumbGo = parentOf[screen] ? go[parentOf[screen]] : null;
+
+    const quotes = [
+      ['Q-2026-0142', 'Tan Wei Ming', 'Kitchen cabinet refurbishment', '10/11/2026', '10/12/2026', 5995.55, 'Sent'],
+      ['Q-2026-0141', 'Priya Raman', 'Shopfront signage repair', '09/11/2026', '09/12/2026', 864.00, 'Draft'],
+      ['Q-2026-0140', 'Rajesh Kumar', 'Office repainting, 2 rooms', '07/11/2026', '07/12/2026', 1526.00, 'Sent'],
+      ['Q-2026-0139', 'Ahmad Bin Yusof', 'Warehouse lighting upgrade', '30/10/2026', '29/11/2026', 2180.00, 'Accepted'],
+      ['Q-2026-0138', 'Lim Hui Shan', 'Salon basin replacement', '28/10/2026', '27/11/2026', 420.00, 'Expired'],
+      ['Q-2026-0137', 'Sarah Goh', 'Bedroom built-in wardrobe', '21/10/2026', '20/11/2026', 3815.00, 'Accepted']
+    ].map((r) => ({ no: r[0], cust: r[1], title: r[2], date: r[3], valid: r[4], amt: money(r[5]), status: r[6], bc: bc(r[6]) }));
+
+    const customers = [
+      ['Tan Wei Ming', 'Homeowner', '+65 9123 4567', 'weiming@example.sg', 'Active', '10/11/2026', 2450],
+      ['Priya Raman', 'Bloom Florist Pte Ltd', '+65 8234 5678', 'priya@example.sg', 'Active', '09/11/2026', 0],
+      ['Rajesh Kumar', 'RK Consulting', '+65 8678 9012', 'rajesh@example.sg', 'Lead', '07/11/2026', 0],
+      ['Lim Hui Shan', 'HS Beauty Studio', '+65 9345 6789', 'huishan@example.sg', 'Lead', '03/11/2026', 0],
+      ['Ahmad Bin Yusof', 'AY Logistics', '+65 8456 7890', 'ahmad@example.sg', 'Active', '30/10/2026', 1180],
+      ['Sarah Goh', 'Homeowner', '+65 9789 0123', 'sarah.goh@example.sg', 'Active', '21/10/2026', 0],
+      ['Chloe Ng', 'Kopi Corner Cafe', '+65 9567 8901', 'chloe@example.sg', 'Inactive', '12/09/2026', 0]
+    ].map((r) => ({ name: r[0], co: r[1], phone: r[2], email: r[3], status: r[4], bc: bc(r[4]), last: r[5], owe: r[6] ? money(r[6]) : '—', ini: r[0].split(' ').map((w) => w[0]).slice(0, 2).join('') }));
+
+    const ptabList = [['info', 'Info'], ['quotes', 'Quotations'], ['appts', 'Appointments'], ['pay', 'Payments'], ['docs', 'Documents'], ['hist', 'History']];
+    const ptabs = ptabList.map((t) => ({ label: t[1], on: ptab === t[0] ? 'on' : '', pick: set({ ptab: t[0] }) }));
+    const pt = {}; ptabList.forEach((t) => { pt[t[0]] = ptab === t[0]; });
+
+    const baseLines = [
+      ['Cabinet removal', 'Remove existing top and bottom cabinets', 1, 450],
+      ['Custom cabinets', 'Laminate finish, soft-close hinges (per ft run)', 18, 220],
+      ['Quartz countertop', '20 mm quartz, cutting and sink cut-out included', 1, 1200],
+      ['Disposal', 'Debris removal and disposal', 1, 180]
+    ];
+    for (let k = 0; k < extra; k++) baseLines.push(['Installation labour', 'Carpentry installation (per day)', 2, 350]);
+    const lines = baseLines.map((l, idx) => ({ n: idx + 1, svc: l[0], desc: l[1], qty: l[2], price: money(l[3]), amt: money(l[2] * l[3]) }));
+    const sub = baseLines.reduce((a, l) => a + l[2] * l[3], 0);
+    const dAmt = Math.round(sub * disc) / 100;
+    const gst = Math.round((sub - dAmt) * 9) / 100;
+    const tot = { sub: money(sub), disc: dAmt ? '−' + money(dAmt) : money(0), gst: money(gst), total: money(sub - dAmt + gst) };
+    const discOpts = [[0, 'None'], [5, '5%'], [10, '10%']].map((o) => ({ label: o[1], on: disc === o[0] ? 'on' : '', pick: set({ disc: o[0] }) }));
+
+    const pos = (s, e) => 'top: ' + ((s - 8) * 48 + 2) + 'px; height: ' + ((e - s) * 48 - 4) + 'px;';
+    const evs = {
+      0: [[9, 10, 'Team briefing', 'int', 'Office']],
+      1: [[14, 15.5, 'Quote review — Rajesh Kumar', 'appt', 'Video call']],
+      2: [[10, 11, 'Call — Priya Raman', 'appt', 'Phone'], [15, 16.5, 'Site visit — Ahmad Bin Yusof', 'appt', 'Tuas']],
+      3: [[11, 12, 'Supplier meeting', 'int', 'Ubi office']],
+      4: [[10, 11.5, 'Site measurement — Tan Wei Ming', 'appt', 'Ang Mo Kio'], [16, 17, 'Follow-up — Lim Hui Shan', 'appt', 'Phone']],
+      5: [[9.5, 10.5, 'Consultation — Sarah Goh', 'appt', 'Bishan']],
+      6: []
+    };
+    const hhmm = (h) => String(Math.floor(h)).padStart(2, '0') + ':' + (h % 1 ? '30' : '00');
+    const mkEv = (x) => ({ title: x[2], time: hhmm(x[0]) + '–' + hhmm(x[1]), where: x[4], cls: 'ev ' + x[3], pos: pos(x[0], x[1]) });
+    const dowsS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const week = dowsS.map((d, idx) => ({ dow: d, date: String(9 + idx).padStart(2, '0'), color: idx === 2 ? '#0F766E' : '#111827', bg: idx === 2 ? '#FAFCFC' : '#FFFFFF', events: evs[idx].map(mkEv) }));
+    const hours = []; for (let h = 8; h < 18; h++) hours.push(hhmm(h));
+    const todayEvents = evs[2].map(mkEv);
+    const monthEv = { 3: ['Inspection — Chloe Ng'], 9: ['Team briefing'], 10: ['Quote review'], 11: ['Call — Priya', 'Site visit — Ahmad'], 12: ['Supplier meeting'], 13: ['Site measurement', 'Follow-up — Hui Shan'], 14: ['Consultation'], 18: ['Material selection'], 20: ['Material selection — Tan'], 24: ['Handover — Sarah Goh'], 27: ['Team lunch'] };
+    const month = [];
+    for (let k = 0; k < 42; k++) {
+      let d, out = false;
+      if (k < 6) { d = 26 + k; out = true; } else if (k - 5 <= 30) { d = k - 5; } else { d = k - 35; out = true; }
+      const evList = (!out && monthEv[d]) ? monthEv[d].map((t) => ({ t: t, cls: /briefing|Supplier|lunch/.test(t) ? 'pill int' : 'pill' })) : [];
+      month.push({ d: d, cls: 'mc' + (out ? ' out' : '') + (!out && d === 11 ? ' today' : ''), events: evList });
+    }
+    const calOpts = [['day', 'Day'], ['week', 'Week'], ['month', 'Month']].map((o) => ({ label: o[1], on: cal === o[0] ? 'on' : '', pick: set({ cal: o[0] }) }));
+    const calLabel = cal === 'day' ? 'Wednesday, 11/11/2026' : cal === 'week' ? '09/11 – 15/11/2026' : 'November 2026';
+
+    const tasks = [
+      ['Follow up overdue invoice INV-2026-0081', 'High', '09/11/2026', 'Siti Aminah', 'Ahmad Bin Yusof', 'To do', true],
+      ['Send revised quote to Tan Wei Ming', 'High', '12/11/2026', 'Mei Ling Tan', 'Tan Wei Ming', 'To do', false],
+      ['Confirm aircon servicing slot', 'Medium', '11/11/2026', 'Daniel Lee', 'Rajesh Kumar', 'In progress', false],
+      ['Order quartz samples', 'Medium', '13/11/2026', 'Daniel Lee', 'Tan Wei Ming', 'In progress', false],
+      ['Prepare December promo flyer', 'Low', '30/11/2026', 'Mei Ling Tan', '—', 'To do', false],
+      ['Upload site photos for AY Logistics', 'Low', '10/11/2026', 'Siti Aminah', 'Ahmad Bin Yusof', 'Done', false]
+    ].map((r) => ({ title: r[0], pri: r[1], pc: bc(r[1]), due: r[6] ? r[2] + ' · overdue' : r[2], dueColor: r[6] ? '#B42318' : '#344054', who: r[3], ini: r[3].split(' ').map((w) => w[0]).join(''), rel: r[4], status: r[5], sc: bc(r[5]), cb: r[5] === 'Done' ? 'cb done' : 'cb' }));
+    const board = ['To do', 'In progress', 'Done'].map((n) => { const items = tasks.filter((t) => t.status === n); return { name: n, count: String(items.length), items: items }; });
+    const taskOpts = [['list', 'List'], ['board', 'Board']].map((o) => ({ label: o[1], on: tview === o[0] ? 'on' : '', pick: set({ tview: o[0] }) }));
+
+    const docs = [
+      ['DOC', 'Standard terms & conditions', 'Doc · edited 09/11/2026'],
+      ['TBL', 'Price list 2026', 'Table · 64 rows'],
+      ['TBL', 'Supplier contacts', 'Table · 18 rows'],
+      ['NOTE', 'Team meeting — 09/11/2026', 'Note · Daniel Lee'],
+      ['PDF', 'Company profile.pdf', 'File · 2.4 MB'],
+      ['DIR', 'Site photos — AY Logistics', 'Folder · 18 files']
+    ].map((d, idx) => ({ kind: d[0], name: d[1], meta: d[2], cls: idx === 0 ? 'nav on' : 'nav' }));
+
+    return {
+      go, is, nav, title: titles[screen], crumbParent, crumbGo,
+      kpis: [
+        { label: 'Open quotations', value: 'S$18,420.00', note: '7 quotes awaiting reply' },
+        { label: 'Accepted this month', value: 'S$12,640.00', note: '5 quotes · up from S$9,880.00' },
+        { label: 'Appointments today', value: '2', note: 'Next: 15:00 site visit, Tuas' },
+        { label: 'Overdue tasks', value: '1', note: 'Invoice follow-up, Ahmad Bin Yusof' }
+      ],
+      quotesShort: quotes.slice(0, 5), quotes, customers,
+      today: [{ time: '10:00', title: 'Call — Priya Raman', where: 'Phone · done' }, { time: '15:00', title: 'Site visit — Ahmad Bin Yusof', where: '22 Tuas Ave 8 · Daniel Lee' }],
+      tasksSoon: tasks.slice(0, 3),
+      ptabs, pt,
+      custQuotes: [
+        { no: 'Q-2026-0142', title: 'Kitchen cabinet refurbishment', date: '10/11/2026', amt: money(5995.55), status: 'Sent', bc: bc('Sent') },
+        { no: 'Q-2026-0118', title: 'Bathroom retiling', date: '02/10/2026', amt: money(3270), status: 'Accepted', bc: bc('Accepted') },
+        { no: 'Q-2026-0097', title: 'Living room feature wall', date: '18/08/2026', amt: money(5286), status: 'Expired', bc: bc('Expired') }
+      ],
+      custAppts: [
+        { date: '13/11/2026', time: '10:00–11:30', title: 'Site measurement', who: 'Daniel Lee', status: 'Confirmed', bc: bc('Confirmed') },
+        { date: '20/11/2026', time: '14:30–15:30', title: 'Material selection', who: 'Mei Ling Tan', status: 'Pending', bc: bc('Pending') },
+        { date: '05/10/2026', time: '09:00–12:00', title: 'Bathroom retiling, day 1', who: 'Daniel Lee', status: 'Completed', bc: bc('Completed') }
+      ],
+      custPays: [
+        { ref: 'INV-2026-0088', date: '02/10/2026', method: 'PayNow', amt: money(3270), status: 'Paid', bc: bc('Paid') },
+        { ref: 'INV-2026-0102', date: '10/11/2026', method: 'Bank transfer', amt: money(2450), status: 'Pending', bc: bc('Pending') }
+      ],
+      custDocs: [
+        { kind: 'PDF', name: 'Q-2026-0118 signed.pdf', meta: '04/10/2026 · 180 KB' },
+        { kind: 'IMG', name: 'Kitchen site photos', meta: '12 photos · 10/11/2026' },
+        { kind: 'PDF', name: 'HDB floor plan.pdf', meta: '14/03/2025 · 1.1 MB' }
+      ],
+      custHist: [
+        { when: '10/11/2026 16:12', what: 'Quotation Q-2026-0142 sent on WhatsApp', who: 'Mei Ling Tan' },
+        { when: '10/11/2026 11:40', what: 'Uploaded 12 site photos', who: 'Daniel Lee' },
+        { when: '08/11/2026 09:05', what: 'Appointment booked: site measurement, 13/11/2026', who: 'Mei Ling Tan' },
+        { when: '04/10/2026 18:30', what: 'Payment received: S$3,270.00 by PayNow', who: 'System' },
+        { when: '14/03/2025 10:00', what: 'Customer created', who: 'Mei Ling Tan' }
+      ],
+      lines, tot, discOpts, addLine: () => this.setState({ extra: extra + 1, screen: 'quoteNew' }),
+      week, hours, todayEvents, month, dows: dowsS, calOpts, calLabel,
+      cv: { day: cal === 'day', week: cal === 'week', month: cal === 'month' },
+      tasks, board, taskOpts, tv: { list: tview === 'list', board: tview === 'board' },
+      docs
+    };
+  }
+}
+</script>
+</body>
+</html>

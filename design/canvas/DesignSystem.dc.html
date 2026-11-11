@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Design system</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#111827;background:#fff}
+*{box-sizing:border-box}
+a{color:#0F766E}a:hover{color:#115E59}
+h1,h2,h3,p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:6px;font:500 14px/1 Inter,system-ui,sans-serif;border:1px solid #D0D5DD;background:#fff;color:#111827;white-space:nowrap}
+.btn.pri{background:#0F766E;border-color:#0F766E;color:#fff}
+.btn.ghost{border-color:transparent}
+.btn.danger{background:#B42318;border-color:#B42318;color:#fff}
+.btn.sm{height:30px;padding:0 10px;font-size:13px}
+.btn.lg{height:44px;padding:0 18px;font-size:15px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:500}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-green{background:#ECFDF3;color:#067647}.b-blue{background:#EFF4FF;color:#1849A9}.b-grey{background:#F2F4F7;color:#475467}.b-amber{background:#FFFAEB;color:#93370D}.b-red{background:#FEF3F2;color:#B42318}.b-teal{background:#E3F1EF;color:#0F5F59}
+.inp{height:36px;border:1px solid #D0D5DD;border-radius:6px;padding:0 12px;font:400 14px Inter,system-ui,sans-serif;color:#111827;background:#fff;width:100%}
+.lbl{font-size:13px;font-weight:500;color:#344054;display:block;margin-bottom:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;font-weight:500;color:#5B6474;padding:10px 12px;background:#F9FAFB;border-bottom:1px solid #E4E7EC}
+.tbl td{padding:12px;border-bottom:1px solid #EEF0F3}
+.num{text-align:right !important;font-variant-numeric:tabular-nums}
+.sw{display:flex;flex-direction:column;gap:6px;font-size:12px}
+.sw span:first-child{height:56px;border-radius:8px;border:1px solid #E4E7EC}
+.h{font-size:12px;font-weight:600;color:#5B6474;letter-spacing:.04em;text-transform:uppercase}
+.card{background:#fff;border:1px solid #E4E7EC;border-radius:10px}
+.seg{display:inline-flex;padding:3px;background:#F2F4F7;border-radius:8px;gap:2px}
+.seg span{height:30px;padding:0 12px;border-radius:6px;font:500 13px/30px Inter,system-ui,sans-serif;color:#5B6474}
+.seg span.on{background:#fff;color:#111827;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.tab{height:40px;padding:0 12px;font:500 14px/40px Inter,system-ui,sans-serif;color:#5B6474;border-bottom:2px solid transparent}
+.tab.on{color:#111827;border-bottom-color:#0F766E}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#5B6474}
+</style>
+</helmet>
+<div style="width: 1440px; min-height: 1640px; padding: 64px 72px; display: flex; flex-direction: column; gap: 48px; background: #FFFFFF;">
+
+  <div style="display: flex; align-items: flex-end; gap: 24px;">
+    <div style="flex-grow: 1;">
+      <p class="h">My Business Platform</p>
+      <h1 style="font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin-top: 8px;">Design system v0.1</h1>
+      <p style="font-size: 16px; color: #475467; margin-top: 8px; max-width: 720px; line-height: 1.5;">Calm, white, readable. One teal accent for actions and selection, grey surfaces for structure, colour only where it carries meaning (status). No decorative motion: 120 ms fades for hover and focus only.</p>
+    </div>
+    <span style="display: inline-flex; align-items: center; gap: 10px;"><span style="width: 40px; height: 40px; border-radius: 10px; background: #0F766E; color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">MB</span><span style="font-size: 18px; font-weight: 600;">My Business</span></span>
+  </div>
+
+  <!-- COLOUR -->
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="font-size: 22px; font-weight: 600;">Colour tokens</h2>
+    <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 16px;">
+      <div class="sw"><span style="background: #FFFFFF;"></span><b>bg</b><span class="mono">#FFFFFF</span></div>
+      <div class="sw"><span style="background: #F7F8FA;"></span><b>surface-1</b><span class="mono">#F7F8FA · sidebar</span></div>
+      <div class="sw"><span style="background: #F2F4F7;"></span><b>surface-2</b><span class="mono">#F2F4F7 · fills</span></div>
+      <div class="sw"><span style="background: #E4E7EC;"></span><b>border</b><span class="mono">#E4E7EC</span></div>
+      <div class="sw"><span style="background: #D0D5DD;"></span><b>border-strong</b><span class="mono">#D0D5DD · inputs</span></div>
+      <div class="sw"><span style="background: #111827;"></span><b>text</b><span class="mono">#111827</span></div>
+      <div class="sw"><span style="background: #344054;"></span><b>text-2</b><span class="mono">#344054</span></div>
+      <div class="sw"><span style="background: #5B6474;"></span><b>text-3</b><span class="mono">#5B6474 · 5.9:1</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 16px;">
+      <div class="sw"><span style="background: #0F766E;"></span><b>accent</b><span class="mono">#0F766E · 5.5:1</span></div>
+      <div class="sw"><span style="background: #115E59;"></span><b>accent-hover</b><span class="mono">#115E59</span></div>
+      <div class="sw"><span style="background: #E3F1EF;"></span><b>accent-soft</b><span class="mono">#E3F1EF · selected</span></div>
+      <div class="sw"><span style="background: #B45309;"></span><b>accent-2 (sparing)</b><span class="mono">#B45309 · highlights</span></div>
+      <div class="sw"><span style="background: #067647;"></span><b>success</b><span class="mono">#067647 / #ECFDF3</span></div>
+      <div class="sw"><span style="background: #1849A9;"></span><b>info</b><span class="mono">#1849A9 / #EFF4FF</span></div>
+      <div class="sw"><span style="background: #93370D;"></span><b>warning</b><span class="mono">#93370D / #FFFAEB</span></div>
+      <div class="sw"><span style="background: #B42318;"></span><b>danger</b><span class="mono">#B42318 / #FEF3F2</span></div>
+    </div>
+  </section>
+
+  <div style="display: flex; gap: 48px;">
+    <!-- TYPE -->
+    <section style="flex: 3 1 0; display: flex; flex-direction: column; gap: 16px;">
+      <h2 style="font-size: 22px; font-weight: 600;">Type · Inter</h2>
+      <div class="card" style="padding: 8px 24px;">
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">display 32/40 · 700</span><span style="font-size: 32px; font-weight: 700; letter-spacing: -0.02em;">S$18,420.00</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">h1 24/32 · 600</span><span style="font-size: 24px; font-weight: 600;">Customers</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">h2 18/26 · 600</span><span style="font-size: 18px; font-weight: 600;">Line items</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">h3 16/24 · 600</span><span style="font-size: 16px; font-weight: 600;">Recent quotations</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">body 14/20 · 400</span><span style="font-size: 14px;">Desktop body and table text. Mobile body is 16 px.</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0; border-bottom: 1px solid #EEF0F3;"><span class="mono" style="width: 150px;">small 13/18 · 400</span><span style="font-size: 13px; color: #5B6474;">Secondary lines, helper text</span></div>
+        <div style="display: flex; align-items: baseline; gap: 24px; padding: 12px 0;"><span class="mono" style="width: 150px;">caption 12/16 · 500</span><span style="font-size: 12px; font-weight: 500; color: #5B6474;">TABLE HEADERS · BADGES</span></div>
+      </div>
+      <p style="font-size: 13px; color: #5B6474;">Numbers use tabular figures and right alignment. Money: S$1,234.50. Dates: DD/MM/YYYY. Time: 24-hour 14:30. Phone: +65 9123 4567.</p>
+    </section>
+    <!-- SPACING -->
+    <section style="flex: 2 1 0; display: flex; flex-direction: column; gap: 16px;">
+      <h2 style="font-size: 22px; font-weight: 600;">Spacing, radius, elevation</h2>
+      <div class="card" style="padding: 20px 24px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-1</span><span style="width: 4px; height: 12px; background: #0F766E;"></span><span class="mono">4</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-2</span><span style="width: 8px; height: 12px; background: #0F766E;"></span><span class="mono">8</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-3</span><span style="width: 12px; height: 12px; background: #0F766E;"></span><span class="mono">12</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-4</span><span style="width: 16px; height: 12px; background: #0F766E;"></span><span class="mono">16</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-6</span><span style="width: 24px; height: 12px; background: #0F766E;"></span><span class="mono">24 · card padding</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-8</span><span style="width: 32px; height: 12px; background: #0F766E;"></span><span class="mono">32 · page gutter</span></div>
+        <div style="display: flex; align-items: center; gap: 16px;"><span class="mono" style="width: 70px;">space-12</span><span style="width: 48px; height: 12px; background: #0F766E;"></span><span class="mono">48 · section gap</span></div>
+      </div>
+      <div style="display: flex; gap: 12px;">
+        <div class="card" style="flex: 1 1 0; padding: 14px; border-radius: 6px;"><span class="mono">radius-sm 6<br>buttons, inputs</span></div>
+        <div class="card" style="flex: 1 1 0; padding: 14px; border-radius: 10px;"><span class="mono">radius-md 10<br>cards, mobile buttons</span></div>
+        <div class="card" style="flex: 1 1 0; padding: 14px; border-radius: 12px; box-shadow: 0 8px 24px rgba(16,24,40,.12);"><span class="mono">shadow-pop<br>menus, dialogs only</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- COMPONENTS -->
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="font-size: 22px; font-weight: 600;">Components</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+      <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <p class="h">Buttons</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;"><span class="btn pri">Primary</span><span class="btn">Secondary</span><span class="btn ghost">Ghost</span><span class="btn danger">Delete</span></div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="btn sm">Small 30</span><span class="btn">Default 36</span><span class="btn lg pri">Mobile 44</span></div>
+        <p style="font-size: 13px; color: #5B6474; line-height: 1.5;">One primary button per view. Icon-only buttons are 36 × 36 on desktop, 44 × 44 on touch.</p>
+      </div>
+      <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+        <p class="h">Inputs</p>
+        <label><span class="lbl">Customer name</span><input class="inp" value="Tan Wei Ming"></label>
+        <label><span class="lbl">Mobile</span><input class="inp" value="+65 9123 4567" style="border-color: #0F766E; outline: 2px solid #99D2CB;"></label>
+        <label><span class="lbl">Postal code</span><input class="inp" value="56012" style="border-color: #B42318;"><span style="font-size: 12px; color: #B42318; display: block; margin-top: 6px;">Singapore postal codes have 6 digits</span></label>
+      </div>
+      <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <p class="h">Badges</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;"><span class="badge b-grey">Draft</span><span class="badge b-blue">Sent</span><span class="badge b-green">Accepted</span><span class="badge b-red">Expired</span><span class="badge b-amber">Pending</span><span class="badge b-teal">Lead</span></div>
+        <p class="h" style="margin-top: 8px;">Tabs &amp; segmented</p>
+        <div style="display: flex; border-bottom: 1px solid #E4E7EC;"><span class="tab on">Info</span><span class="tab">Quotations</span><span class="tab">Payments</span></div>
+        <div class="seg"><span>Day</span><span class="on">Week</span><span>Month</span></div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div class="card" style="overflow: hidden;">
+        <div style="padding: 16px 20px;"><p class="h">Table (desktop)</p></div>
+        <table class="tbl">
+          <thead><tr><th>Quote</th><th>Customer</th><th>Issued</th><th class="num">Total</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight: 500;">Q-2026-0142</td><td>Tan Wei Ming</td><td style="color: #5B6474;">10/11/2026</td><td class="num">S$5,995.55</td><td><span class="badge b-blue">Sent</span></td></tr>
+            <tr style="background: #F9FAFB;"><td style="font-weight: 500;">Q-2026-0139</td><td>Ahmad Bin Yusof</td><td style="color: #5B6474;">30/10/2026</td><td class="num">S$2,180.00</td><td><span class="badge b-green">Accepted</span></td></tr>
+            <tr><td style="font-weight: 500;">Q-2026-0138</td><td>Lim Hui Shan</td><td style="color: #5B6474;">28/10/2026</td><td class="num">S$420.00</td><td><span class="badge b-red">Expired</span></td></tr>
+          </tbody>
+        </table>
+        <p style="padding: 12px 20px; font-size: 13px; color: #5B6474;">48 px rows, hairline dividers, grey header, hover row #F9FAFB, whole row clickable, money right-aligned.</p>
+      </div>
+      <div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <p class="h">Same data on a phone</p>
+        <div style="border: 1px solid #E4E7EC; border-radius: 12px; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 64px; border-bottom: 1px solid #EEF0F3;"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">Tan Wei Ming</span><span style="font-size: 13px; color: #5B6474;">Q-2026-0142 · 10/11/2026</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-weight: 600;">S$5,995.55</span><span class="badge b-blue">Sent</span></span></div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 64px;"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">Ahmad Bin Yusof</span><span style="font-size: 13px; color: #5B6474;">Q-2026-0139 · 30/10/2026</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-weight: 600;">S$2,180.00</span><span class="badge b-green">Accepted</span></span></div>
+        </div>
+        <p style="font-size: 13px; color: #5B6474; line-height: 1.5;">Below 768 px every table becomes stacked rows: title + key, secondary line, amount and status on the right. Min 64 px tall.</p>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+      <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 13px; color: #5B6474;">Open quotations</span><span style="font-size: 24px; font-weight: 600;">S$18,420.00</span><span style="font-size: 12px; color: #5B6474;">Stat card</span></div>
+      <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 13px; color: #5B6474;">Empty state</span><span style="font-size: 14px;">No quotations yet.</span><span class="btn sm pri" style="align-self: flex-start;">New quotation</span></div>
+      <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; background: #F7F8FA;"><span style="font-size: 13px; color: #5B6474;">Callout</span><span style="font-size: 14px; line-height: 1.5;">GST is added at 9% because this business is GST-registered.</span></div>
+      <div class="card" style="padding: 12px; display: flex; flex-direction: column; gap: 10px;"><span style="font-size: 14px; font-weight: 500;">Order quartz samples</span><span style="display: flex; gap: 8px; align-items: center;"><span class="badge b-amber">Medium</span><span style="font-size: 12px; color: #344054; flex-grow: 1;">13/11/2026</span><span style="width: 24px; height: 24px; border-radius: 50%; background: #E3F1EF; color: #0F5F59; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center;">DL</span></span></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

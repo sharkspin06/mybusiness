@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* Design tokens — approved design v0.1 (design/DESIGN-APPROVED.md). Do not change without approval. */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-bg: #FFFFFF;
+  --color-surface-1: #F7F8FA;
+  --color-surface-2: #F2F4F7;
+  --color-hover: #EBEEF2;
+  --color-row-hover: #F9FAFB;
+  --color-line: #E4E7EC;
+  --color-line-soft: #EEF0F3;
+  --color-line-strong: #D0D5DD;
+
+  --color-ink: #111827;
+  --color-ink-2: #344054;
+  --color-ink-3: #5B6474;
+  --color-ink-4: #98A2B3;
+
+  --color-accent: #421D24;
+  --color-accent-hover: #2E1419;
+  --color-accent-soft: #F6EDEF;
+  --color-accent-ink: #421D24;
+  --color-accent-ring: #C9A2AA;
+  --color-accent-2: #B45309;
+
+  --color-success: #067647;
+  --color-success-soft: #ECFDF3;
+  --color-info: #1849A9;
+  --color-info-soft: #EFF4FF;
+  --color-warning: #93370D;
+  --color-warning-soft: #FFFAEB;
+  --color-danger: #B42318;
+  --color-danger-soft: #FEF3F2;
+  --color-neutral: #475467;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  --shadow-pop: 0 8px 24px rgba(16, 24, 40, 0.12);
+  --shadow-seg: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+/* Dark theme — same token names, so every utility (bg-bg, text-ink, border-line…) flips automatically.
+   Applied via <html data-theme="dark">, set by src/lib/theme.ts (and the inline script in index.html). */
+:root {
+  color-scheme: light;
+  /* Overlay tint for hover/press on any clickable element (works on transparent and coloured buttons). */
+  --hover-tint: rgba(17, 24, 39, 0.05);
+  --press-tint: rgba(17, 24, 39, 0.1);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --hover-tint: rgba(255, 255, 255, 0.06);
+  --press-tint: rgba(255, 255, 255, 0.12);
+
+  --color-bg: #0F1115;
+  --color-surface-1: #161A20;
+  --color-surface-2: #1C2128;
+  --color-hover: #262C35;
+  --color-row-hover: #151A20;
+  --color-line: #2A3039;
+  --color-line-soft: #21262E;
+  --color-line-strong: #3A424D;
+
+  --color-ink: #F2F4F7;
+  --color-ink-2: #D0D5DD;
+  --color-ink-3: #98A2B3;
+  --color-ink-4: #667085;
+
+  --color-accent: #8C3A4A;
+  --color-accent-hover: #A0465A;
+  --color-accent-soft: #2E161B;
+  --color-accent-ink: #E8A9B6;
+  --color-accent-ring: #7A3442;
+  --color-accent-2: #F59E0B;
+
+  --color-success: #4ADE80;
+  --color-success-soft: #0F2A1C;
+  --color-info: #8AB4FF;
+  --color-info-soft: #142140;
+  --color-warning: #FBBF24;
+  --color-warning-soft: #2E2410;
+  --color-danger: #E5484D;
+  --color-danger-soft: #3A1614;
+  --color-neutral: #98A2B3;
+
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-seg: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  html, body, #root { height: 100%; }
+  /* 17px root (was the 16px default): every rem-based size — text-sm, text-base, spacing — scales up ~6%. */
+  html { font-size: 106.25%; }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  /* 16px inputs on phones so iOS Safari does not zoom in. */
+  @media (max-width: 767px) {
+    input, select, textarea { font-size: 16px; }
+  }
+  :focus-visible { outline: 2px solid var(--color-accent-ring); outline-offset: 1px; }
+  /* ---- Interaction feedback for every clickable control ----
+     Lives in the base layer, so a component's own hover:/shadow utilities still win.
+     Backdrops and other "invisible" click targets opt out with .no-fx. */
+  :where(button, [role="button"], [role="menuitem"], [role="tab"], [role="option"], summary,
+         a[class*="inline-flex"], a[class*="rounded"], a[class*="flex"][class*="h-"]):not(:disabled, .no-fx) {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  :where(button, [role="button"], [role="menuitem"], [role="tab"], [role="option"], summary,
+         a[class*="inline-flex"], a[class*="rounded"], a[class*="flex"][class*="h-"]):not(:disabled, [aria-disabled="true"], .no-fx):hover {
+    box-shadow: inset 0 0 0 100vmax var(--hover-tint);
+  }
+  :where(button, [role="button"], [role="menuitem"], [role="tab"], [role="option"], summary,
+         a[class*="inline-flex"], a[class*="rounded"], a[class*="flex"][class*="h-"]):not(:disabled, [aria-disabled="true"], .no-fx):active {
+    box-shadow: inset 0 0 0 100vmax var(--press-tint);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html, main, [role="dialog"], [role="dialog"] * { scroll-behavior: smooth; }
+
+    a, button, [role="button"], [role="menuitem"], [role="tab"], [role="option"], summary {
+      transition:
+        background-color 150ms ease, color 150ms ease, border-color 150ms ease,
+        box-shadow 150ms ease, opacity 150ms ease, scale 120ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    /* Click "press" — small controls only (buttons, icon buttons, button-styled links);
+       big rows/cards just get the tint so they don't visibly shrink. */
+    :where(button[class*="inline-flex"], button[class*="size-"], a[class*="inline-flex"], a[class*="size-"],
+           button[class*="rounded-full"], button[class*="h-9"], button[class*="h-11"]):not(:disabled, .no-fx):active {
+      scale: 0.96;
+    }
+
+    /* Pop-in for dialogs and dropdown menus. */
+    [role="dialog"] { animation: pop-in 180ms cubic-bezier(0.2, 0, 0, 1); }
+    [role="menu"] { animation: pop-in 140ms cubic-bezier(0.2, 0, 0, 1); transform-origin: top; }
+    .backdrop-in { animation: fade-in 180ms ease; }
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+}

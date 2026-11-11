@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+<meta charset="utf-8">
+<title>My Business Platform — iPhone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0F766E;text-decoration:none}a:hover{color:#115E59}
+h1,h2,h3,p{margin:0}
+.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.tb{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:56px;border:0;background:none;color:#5B6474;font:500 11px/1 Inter,system-ui,sans-serif;cursor:pointer}
+.tb.on{color:#0F766E}
+.ib{width:44px;height:44px;border:0;background:none;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:#111827;cursor:pointer;flex:none}
+.ib:hover{background:#F2F4F7}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;padding:0 16px;border-radius:10px;font:600 15px/1 Inter,system-ui,sans-serif;border:1px solid #D0D5DD;background:#fff;color:#111827;cursor:pointer;white-space:nowrap}
+.btn.pri{background:#0F766E;border-color:#0F766E;color:#fff}
+.card{background:#fff;border:1px solid #E4E7EC;border-radius:12px}
+.row{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 16px;border:0;border-bottom:1px solid #EEF0F3;background:#fff;width:100%;text-align:left;cursor:pointer;font-family:inherit;color:#111827}
+.row:hover{background:#F9FAFB}
+.badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-green{background:#ECFDF3;color:#067647}.b-blue{background:#EFF4FF;color:#1849A9}.b-grey{background:#F2F4F7;color:#475467}.b-amber{background:#FFFAEB;color:#93370D}.b-red{background:#FEF3F2;color:#B42318}.b-teal{background:#E3F1EF;color:#0F5F59}
+.av{width:40px;height:40px;border-radius:50%;background:#E3F1EF;color:#0F5F59;font-size:14px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.sub{font-size:13px;color:#5B6474}
+.seg{display:flex;padding:3px;background:#F2F4F7;border-radius:10px;gap:2px}
+.seg button{flex:1 1 0;height:38px;border:0;border-radius:8px;background:none;font:500 14px/1 Inter,system-ui,sans-serif;color:#5B6474;cursor:pointer}
+.seg button.on{background:#fff;color:#111827;box-shadow:0 1px 2px rgba(16,24,40,.1)}
+.ptab{height:44px;padding:0 14px;border:0;background:none;font:500 14px/1 Inter,system-ui,sans-serif;color:#5B6474;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;flex:none}
+.ptab.on{color:#111827;border-bottom-color:#0F766E}
+.inp{height:44px;border:1px solid #D0D5DD;border-radius:10px;padding:0 14px;font:400 16px Inter,system-ui,sans-serif;color:#111827;background:#fff;width:100%}
+.lbl{font-size:13px;font-weight:500;color:#344054;display:block;margin-bottom:6px}
+.sec{font-size:12px;font-weight:600;color:#5B6474;letter-spacing:.02em;text-transform:uppercase;padding:16px 16px 8px}
+.cb{width:22px;height:22px;border:1.5px solid #98A2B3;border-radius:6px;display:inline-block;flex:none}
+.cb.done{background:#0F766E;border-color:#0F766E}
+.day{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;border-radius:10px;font-size:12px;color:#5B6474;border:0;background:none;cursor:pointer;min-height:56px}
+.day b{font-size:16px;font-weight:600;color:#111827}
+.day.on{background:#0F766E;color:#E3F1EF}.day.on b{color:#fff}
+.dot{width:4px;height:4px;border-radius:50%;background:#0F766E}
+.mcell{height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:14px;border-radius:10px}
+.mcell.out{color:#98A2B3}.mcell.today{background:#0F766E;color:#fff}.mcell.today .dot{background:#fff}
+.agenda{display:flex;gap:12px;padding:12px;border-radius:12px;background:#F7F8FA;border-left:0}
+.agenda.appt{background:#E3F1EF}
+</style>
+</helmet>
+
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FFFFFF; overflow: hidden; position: relative;">
+
+  <!-- Top bar -->
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 6px; border-bottom: 1px solid #EEF0F3;">
+    <sc-if value="{{back}}" hint-placeholder-val="{{ false }}">
+      <button class="ib" aria-label="Back" onClick="{{back}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+    </sc-if>
+    <sc-if value="{{noBack}}" hint-placeholder-val="{{ true }}">
+      <span style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;"><span style="width: 30px; height: 30px; border-radius: 8px; background: #0F766E; color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">BW</span></span>
+    </sc-if>
+    <h1 style="font-size: 17px; font-weight: 600; flex-grow: 1; padding-left: 4px;">{{title}}</h1>
+    <button class="ib" aria-label="Search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg></button>
+    <sc-if value="{{plus}}" hint-placeholder-val="{{ true }}">
+      <button class="ib" aria-label="Add" onClick="{{plus}}" style="color: #0F766E;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+    </sc-if>
+  </header>
+
+  <!-- Scroll area -->
+  <div style="flex: 1 1 auto; overflow-y: auto; min-height: 0;">
+
+  <!-- HOME -->
+  <sc-if value="{{is.dash}}" hint-placeholder-val="{{ true }}">
+    <div style="padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+      <div><p class="sub">Wednesday, 11/11/2026</p><h2 style="font-size: 22px; font-weight: 600; margin-top: 4px;">Good afternoon, Mei Ling</h2></div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+          <div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 6px;"><span class="sub" style="font-size: 12px;">{{k.label}}</span><span style="font-size: 19px; font-weight: 600;">{{k.value}}</span></div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <button class="btn pri" onClick="{{go.quoteNew}}">New quotation</button>
+        <button class="btn" onClick="{{go.calendar}}">New appointment</button>
+      </div>
+      <section>
+        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Today</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{todayEv}}" as="e" hint-placeholder-count="2">
+            <div class="{{e.cls}}"><span style="font-size: 14px; font-weight: 600; width: 46px;">{{e.time}}</span><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 500;">{{e.title}}</span><span class="sub">{{e.where}}</span></span></div>
+          </sc-for>
+        </div>
+      </section>
+      <section>
+        <div style="display: flex; align-items: center; margin-bottom: 4px;"><h3 style="font-size: 16px; font-weight: 600; flex-grow: 1;">Recent quotations</h3><a href="#" onClick="{{go.quotes}}" style="font-size: 14px; font-weight: 500; padding: 12px 0;">See all</a></div>
+        <div class="card" style="overflow: hidden;">
+          <sc-for list="{{quotesShort}}" as="q" hint-placeholder-count="3">
+            <button class="row" onClick="{{go.customer}}"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{q.cust}}</span><span class="sub">{{q.no}} · {{q.date}}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-size: 15px; font-weight: 600;">{{q.amt}}</span><span class="{{q.bc}}">{{q.status}}</span></span></button>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- CUSTOMERS -->
+  <sc-if value="{{is.customers}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 10px;">
+        <input class="inp" placeholder="Search name or phone" aria-label="Search customers" style="background: #F7F8FA; border-color: #E4E7EC;">
+        <div style="display: flex; gap: 8px; overflow-x: auto;">
+          <button class="btn" style="height: 36px; font-size: 14px; background: #111827; color: #fff; border-color: #111827;">All 48</button><button class="btn" style="height: 36px; font-size: 14px;">Active</button><button class="btn" style="height: 36px; font-size: 14px;">Leads</button><button class="btn" style="height: 36px; font-size: 14px;">Inactive</button>
+        </div>
+      </div>
+      <sc-for list="{{customers}}" as="c" hint-placeholder-count="7">
+        <button class="row" onClick="{{go.customer}}" style="min-height: 72px;">
+          <span class="av">{{c.ini}}</span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="font-size: 16px; font-weight: 500;">{{c.name}}</span><span class="sub">{{c.phone}} · {{c.co}}</span></span>
+          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="{{c.bc}}">{{c.status}}</span><span style="font-size: 12px; color: #B42318; font-weight: 500;">{{c.owe}}</span></span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- CUSTOMER PROFILE -->
+  <sc-if value="{{is.customer}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding: 20px 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
+        <span class="av" style="width: 64px; height: 64px; font-size: 20px;">TW</span>
+        <h2 style="font-size: 20px; font-weight: 600;">Tan Wei Ming</h2>
+        <div style="display: flex; gap: 6px;"><span class="badge b-green">Active</span><span class="badge b-grey">Homeowner</span></div>
+        <p class="sub">+65 9123 4567 · Outstanding <span style="color: #B42318; font-weight: 600;">S$2,450.00</span></p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 16px 12px;">
+        <button class="btn" style="flex-direction: column; height: 60px; gap: 4px; font-size: 12px; font-weight: 500;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>Call</button>
+        <button class="btn" style="flex-direction: column; height: 60px; gap: 4px; font-size: 12px; font-weight: 500;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"></path></svg>WhatsApp</button>
+        <button class="btn" onClick="{{go.quoteNew}}" style="flex-direction: column; height: 60px; gap: 4px; font-size: 12px; font-weight: 500;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 11v6M9 14h6"></path></svg>Quote</button>
+      </div>
+      <div role="tablist" style="display: flex; overflow-x: auto; border-bottom: 1px solid #E4E7EC; padding: 0 8px;">
+        <sc-for list="{{ptabs}}" as="t" hint-placeholder-count="6"><button class="ptab {{t.on}}" role="tab" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+      </div>
+      <sc-if value="{{pt.info}}" hint-placeholder-val="{{ true }}">
+        <div>
+          <sc-for list="{{info}}" as="f" hint-placeholder-count="6">
+            <div style="padding: 12px 16px; border-bottom: 1px solid #EEF0F3; display: flex; flex-direction: column; gap: 3px;"><span class="sub" style="font-size: 12px;">{{f.k}}</span><span style="font-size: 15px;">{{f.v}}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{pt.quotes}}" hint-placeholder-val="{{ false }}">
+        <div><sc-for list="{{custQuotes}}" as="q" hint-placeholder-count="3"><button class="row"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{q.title}}</span><span class="sub">{{q.no}} · {{q.date}}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-weight: 600;">{{q.amt}}</span><span class="{{q.bc}}">{{q.status}}</span></span></button></sc-for></div>
+      </sc-if>
+      <sc-if value="{{pt.appts}}" hint-placeholder-val="{{ false }}">
+        <div><sc-for list="{{custAppts}}" as="a" hint-placeholder-count="3"><button class="row"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{a.title}}</span><span class="sub">{{a.date}} · {{a.time}}</span></span><span class="{{a.bc}}">{{a.status}}</span></button></sc-for></div>
+      </sc-if>
+      <sc-if value="{{pt.pay}}" hint-placeholder-val="{{ false }}">
+        <div><sc-for list="{{custPays}}" as="p" hint-placeholder-count="2"><button class="row"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{p.ref}}</span><span class="sub">{{p.date}} · {{p.method}}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-weight: 600;">{{p.amt}}</span><span class="{{p.bc}}">{{p.status}}</span></span></button></sc-for></div>
+      </sc-if>
+      <sc-if value="{{pt.docs}}" hint-placeholder-val="{{ false }}">
+        <div><sc-for list="{{custDocs}}" as="d" hint-placeholder-count="3"><button class="row"><span style="width: 40px; height: 40px; border-radius: 8px; background: #F2F4F7; color: #475467; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex: none;">{{d.kind}}</span><span style="display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{d.name}}</span><span class="sub">{{d.meta}}</span></span></button></sc-for></div>
+      </sc-if>
+      <sc-if value="{{pt.hist}}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 4px 16px;"><sc-for list="{{custHist}}" as="h" hint-placeholder-count="5"><div style="padding: 12px 0; border-bottom: 1px solid #EEF0F3; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px;">{{h.what}}</span><span class="sub">{{h.when}} · {{h.who}}</span></div></sc-for></div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- QUOTES LIST -->
+  <sc-if value="{{is.quotes}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding: 12px 16px;"><div class="seg"><button class="on">All</button><button>Draft</button><button>Sent</button><button>Won</button></div></div>
+      <sc-for list="{{quotes}}" as="q" hint-placeholder-count="6">
+        <button class="row" onClick="{{go.quoteNew}}" style="min-height: 72px;"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="font-size: 15px; font-weight: 500;">{{q.cust}}</span><span class="sub">{{q.no}} · {{q.title}}</span><span class="sub" style="font-size: 12px;">Issued {{q.date}}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span style="font-size: 15px; font-weight: 600;">{{q.amt}}</span><span class="{{q.bc}}">{{q.status}}</span></span></button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- QUOTE BUILDER -->
+  <sc-if value="{{is.quoteNew}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 15px; font-weight: 600; flex-grow: 1;">Q-2026-0143</span><span class="badge b-grey">Draft</span></div>
+      <div>
+        <span class="lbl">Customer</span>
+        <button class="row card" style="border: 1px solid #D0D5DD; border-radius: 10px; padding: 10px 12px;"><span class="av">TW</span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 500;">Tan Wei Ming</span><span class="sub">+65 9123 4567</span></span><span style="font-size: 14px; color: #0F766E; font-weight: 500;">Change</span></button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <label><span class="lbl">Issue date</span><input class="inp" value="11/11/2026"></label>
+        <label><span class="lbl">Valid until</span><input class="inp" value="11/12/2026"></label>
+      </div>
+      <section style="display: flex; flex-direction: column; gap: 8px;">
+        <h3 style="font-size: 16px; font-weight: 600;">Line items</h3>
+        <sc-for list="{{lines}}" as="l" hint-placeholder-count="4">
+          <div class="card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; gap: 8px;"><span style="font-size: 15px; font-weight: 500; flex-grow: 1;">{{l.svc}}</span><span style="font-size: 15px; font-weight: 600;">{{l.amt}}</span></div>
+            <span class="sub">{{l.desc}}</span>
+            <span class="sub" style="font-size: 12px;">{{l.qty}} × {{l.price}}</span>
+          </div>
+        </sc-for>
+        <button class="btn" onClick="{{addLine}}" style="border-style: dashed;"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add line item</button>
+      </section>
+      <section class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+        <div style="display: flex;"><span class="sub" style="flex-grow: 1; font-size: 15px;">Subtotal</span><span>{{tot.sub}}</span></div>
+        <span class="sub" style="font-size: 15px;">Discount</span>
+        <div class="seg"><sc-for list="{{discOpts}}" as="o" hint-placeholder-count="3"><button class="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div>
+        <div style="display: flex;"><span class="sub" style="flex-grow: 1; font-size: 15px;">Discount amount</span><span>{{tot.disc}}</span></div>
+        <div style="display: flex;"><span class="sub" style="flex-grow: 1; font-size: 15px;">GST 9%</span><span>{{tot.gst}}</span></div>
+      </section>
+      <div style="height: 8px;"></div>
+    </div>
+  </sc-if>
+
+  <!-- CALENDAR -->
+  <sc-if value="{{is.calendar}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div class="seg"><sc-for list="{{calOpts}}" as="o" hint-placeholder-count="3"><button class="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div>
+      <sc-if value="{{cv.month}}" hint-placeholder-val="{{ false }}">
+        <div>
+          <p style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">November 2026</p>
+          <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; text-align: center;">
+            <sc-for list="{{dowsShort}}" as="w" hint-placeholder-count="7"><span style="font-size: 12px; color: #5B6474; padding: 4px 0;">{{w}}</span></sc-for>
+            <sc-for list="{{month}}" as="c" hint-placeholder-count="35"><span class="{{c.cls}}">{{c.d}}<sc-if value="{{c.has}}" hint-placeholder-val="{{ false }}"><span class="dot"></span></sc-if></span></sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{cv.notMonth}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 2px;">
+          <sc-for list="{{strip}}" as="d" hint-placeholder-count="7"><button class="{{d.cls}}">{{d.dow}}<b>{{d.date}}</b><sc-if value="{{d.has}}" hint-placeholder-val="{{ true }}"><span class="dot"></span></sc-if></button></sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{cv.dayish}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <p style="font-size: 15px; font-weight: 600;">{{dayHead}}</p>
+          <sc-for list="{{todayEv}}" as="e" hint-placeholder-count="2">
+            <button class="{{e.cls}}" style="border: 0; width: 100%; text-align: left; font-family: inherit; cursor: pointer;"><span style="font-size: 14px; font-weight: 600; width: 46px; color: #111827;">{{e.time}}</span><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 500; color: #111827;">{{e.title}}</span><span class="sub">{{e.span}} · {{e.where}}</span></span></button>
+          </sc-for>
+          <p class="sub" style="padding-top: 4px;">Press and hold an appointment to reschedule.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{cv.week}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <sc-for list="{{weekList}}" as="d" hint-placeholder-count="7">
+            <div style="padding: 8px 0; border-bottom: 1px solid #EEF0F3; display: flex; gap: 12px;">
+              <span style="width: 44px; flex: none; display: flex; flex-direction: column; align-items: center;"><span class="sub" style="font-size: 12px;">{{d.dow}}</span><span style="font-size: 18px; font-weight: 600; color: {{d.color}};">{{d.date}}</span></span>
+              <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+                <sc-for list="{{d.events}}" as="e" hint-placeholder-count="1"><div class="{{e.cls}}" style="padding: 8px 10px;"><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; font-weight: 500;">{{e.title}}</span><span class="sub" style="font-size: 12px;">{{e.span}}</span></span></div></sc-for>
+                <sc-if value="{{d.empty}}" hint-placeholder-val="{{ false }}"><span class="sub" style="padding: 8px 0;">No appointments</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- MORE -->
+  <sc-if value="{{is.more}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div class="row" style="cursor: default; min-height: 76px;"><span class="av">ML</span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 16px; font-weight: 600;">Mei Ling Tan</span><span class="sub">Owner · Brightway Services</span></span></div>
+      <div class="sec">Workspace</div>
+      <button class="row" onClick="{{go.tasks}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"></rect><path d="M8 12.5l2.7 2.7L16 9.8"></path></svg><span style="flex-grow: 1; font-size: 16px;">Tasks</span><span class="badge b-red">1 overdue</span></button>
+      <button class="row" onClick="{{go.docs}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg><span style="flex-grow: 1; font-size: 16px;">Documents</span></button>
+      <button class="row" onClick="{{go.settings}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg><span style="flex-grow: 1; font-size: 16px;">Settings</span></button>
+      <div class="sec">Account</div>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Switch business</span><span class="sub">Brightway Services</span></button>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Help &amp; support</span></button>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px; color: #B42318;">Sign out</span></button>
+    </div>
+  </sc-if>
+
+  <!-- TASKS -->
+  <sc-if value="{{is.tasks}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding: 12px 16px; display: flex; gap: 8px; overflow-x: auto;">
+        <button class="btn" style="height: 36px; font-size: 14px; background: #111827; color: #fff; border-color: #111827;">My tasks</button><button class="btn" style="height: 36px; font-size: 14px;">All</button><button class="btn" style="height: 36px; font-size: 14px;">High priority</button><button class="btn" style="height: 36px; font-size: 14px;">Done</button>
+      </div>
+      <sc-for list="{{tasks}}" as="t" hint-placeholder-count="6">
+        <div class="row" style="align-items: flex-start; min-height: 72px; padding-top: 14px; cursor: default;">
+          <button aria-label="Mark done" style="width: 44px; height: 44px; margin: -11px -6px 0 -11px; border: 0; background: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;"><span class="{{t.cb}}"></span></button>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0;"><span style="font-size: 15px; font-weight: 500;">{{t.title}}</span><span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span class="{{t.pc}}">{{t.pri}}</span><span style="font-size: 13px; color: {{t.dueColor}};">{{t.due}}</span><span class="sub">· {{t.who}}</span></span></span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- DOCUMENTS -->
+  <sc-if value="{{is.docs}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding: 12px 16px;"><div class="seg"><button class="on">All</button><button>Docs</button><button>Tables</button><button>Files</button></div></div>
+      <sc-for list="{{docs}}" as="d" hint-placeholder-count="6">
+        <button class="row"><span style="width: 40px; height: 40px; border-radius: 8px; background: #F2F4F7; color: #475467; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex: none;">{{d.kind}}</span><span style="display: flex; flex-direction: column; gap: 3px;"><span style="font-size: 15px; font-weight: 500;">{{d.name}}</span><span class="sub">{{d.meta}}</span></span></button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- SETTINGS -->
+  <sc-if value="{{is.settings}}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div class="sec">Business</div>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Business profile</span><span class="sub">UEN 201912345K</span></button>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Quotation &amp; GST</span><span class="sub">GST 9%</span></button>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Reminders</span><span class="sub">WhatsApp, email</span></button>
+      <div class="sec">Team</div>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Users &amp; permissions</span><span class="sub">3 users</span></button>
+      <div class="sec">Data</div>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Export &amp; backups</span><span class="sub">Last 11/11/2026</span></button>
+      <button class="row"><span style="flex-grow: 1; font-size: 16px;">Subscription</span><span class="sub">Growth plan</span></button>
+    </div>
+  </sc-if>
+  </div>
+
+  <!-- Bottom: quote action bar or tab bar -->
+  <sc-if value="{{is.quoteNew}}" hint-placeholder-val="{{ false }}">
+    <div style="flex: none; border-top: 1px solid #E4E7EC; padding: 10px 16px 24px; display: flex; flex-direction: column; gap: 10px; background: #fff;">
+      <div style="display: flex; align-items: baseline;"><span style="flex-grow: 1; font-size: 14px; color: #5B6474;">Total incl. GST</span><span style="font-size: 22px; font-weight: 700;">{{tot.total}}</span></div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <button class="btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"></path></svg>PDF</button>
+        <button class="btn pri"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.1-4.2A8.5 8.5 0 1 1 20.5 12z"></path></svg>WhatsApp</button>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{showTabs}}" hint-placeholder-val="{{ true }}">
+    <nav aria-label="Main" style="flex: none; border-top: 1px solid #E4E7EC; padding: 4px 4px 20px; display: flex; background: #fff;">
+      <button class="{{tab.dash}}" onClick="{{go.dash}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>Home</button>
+      <button class="{{tab.customers}}" onClick="{{go.customers}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.8c1.9.7 3.1 2.4 3.5 5.2"></path></svg>Customers</button>
+      <button class="{{tab.quotes}}" onClick="{{go.quotes}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg>Quotes</button>
+      <button class="{{tab.calendar}}" onClick="{{go.calendar}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Calendar</button>
+      <button class="{{tab.more}}" onClick="{{go.more}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>More</button>
+    </nav>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const screen = st.screen || 'dash';
+    const ptab = st.ptab || 'info';
+    const cal = st.cal || 'day';
+    const disc = st.disc == null ? 5 : st.disc;
+    const extra = st.extra || 0;
+    const set = (o) => () => this.setState(o);
+    const money = (n) => 'S$' + n.toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const B = { Active: 'green', Accepted: 'green', Paid: 'green', Done: 'green', Completed: 'green', Sent: 'blue', 'In progress': 'blue', Confirmed: 'blue', Draft: 'grey', Inactive: 'grey', Low: 'grey', 'To do': 'grey', Lead: 'teal', Medium: 'amber', Pending: 'amber', Expired: 'red', High: 'red' };
+    const bc = (s) => 'badge b-' + (B[s] || 'grey');
+
+    const screens = ['dash', 'customers', 'customer', 'quotes', 'quoteNew', 'calendar', 'more', 'tasks', 'docs', 'settings'];
+    const parent = { customer: 'customers', quoteNew: 'quotes', tasks: 'more', docs: 'more', settings: 'more' };
+    const tabOf = { dash: 'dash', customers: 'customers', customer: 'customers', quotes: 'quotes', quoteNew: 'quotes', calendar: 'calendar', more: 'more', tasks: 'more', docs: 'more', settings: 'more' };
+    const go = {}, is = {}; screens.forEach((s) => { go[s] = set({ screen: s }); is[s] = screen === s; });
+    const tab = {}; ['dash', 'customers', 'quotes', 'calendar', 'more'].forEach((t) => { tab[t] = tabOf[screen] === t ? 'tb on' : 'tb'; });
+    const titles = { dash: 'Home', customers: 'Customers', customer: 'Customer', quotes: 'Quotations', quoteNew: 'New quotation', calendar: 'Calendar', more: 'More', tasks: 'Tasks', docs: 'Documents', settings: 'Settings' };
+    const plusTo = { customers: null, quotes: 'quoteNew', calendar: null, tasks: null, dash: 'quoteNew' };
+    const back = parent[screen] ? go[parent[screen]] : null;
+    const plus = (screen in plusTo) ? (plusTo[screen] ? go[plusTo[screen]] : () => {}) : null;
+
+    const quotes = [
+      ['Q-2026-0142', 'Tan Wei Ming', 'Kitchen cabinets', '10/11/2026', 5995.55, 'Sent'],
+      ['Q-2026-0141', 'Priya Raman', 'Signage repair', '09/11/2026', 864, 'Draft'],
+      ['Q-2026-0140', 'Rajesh Kumar', 'Office repainting', '07/11/2026', 1526, 'Sent'],
+      ['Q-2026-0139', 'Ahmad Bin Yusof', 'Lighting upgrade', '30/10/2026', 2180, 'Accepted'],
+      ['Q-2026-0138', 'Lim Hui Shan', 'Basin replacement', '28/10/2026', 420, 'Expired'],
+      ['Q-2026-0137', 'Sarah Goh', 'Built-in wardrobe', '21/10/2026', 3815, 'Accepted']
+    ].map((r) => ({ no: r[0], cust: r[1], title: r[2], date: r[3], amt: money(r[4]), status: r[5], bc: bc(r[5]) }));
+
+    const customers = [
+      ['Tan Wei Ming', 'Homeowner', '+65 9123 4567', 'Active', 2450],
+      ['Priya Raman', 'Bloom Florist', '+65 8234 5678', 'Active', 0],
+      ['Rajesh Kumar', 'RK Consulting', '+65 8678 9012', 'Lead', 0],
+      ['Lim Hui Shan', 'HS Beauty Studio', '+65 9345 6789', 'Lead', 0],
+      ['Ahmad Bin Yusof', 'AY Logistics', '+65 8456 7890', 'Active', 1180],
+      ['Sarah Goh', 'Homeowner', '+65 9789 0123', 'Active', 0],
+      ['Chloe Ng', 'Kopi Corner Cafe', '+65 9567 8901', 'Inactive', 0]
+    ].map((r) => ({ name: r[0], co: r[1], phone: r[2], status: r[3], bc: bc(r[3]), owe: r[4] ? money(r[4]) + ' due' : '', ini: r[0].split(' ').map((w) => w[0]).slice(0, 2).join('') }));
+
+    const ptabList = [['info', 'Info'], ['quotes', 'Quotations'], ['appts', 'Appointments'], ['pay', 'Payments'], ['docs', 'Documents'], ['hist', 'History']];
+    const ptabs = ptabList.map((t) => ({ label: t[1], on: ptab === t[0] ? 'on' : '', pick: set({ ptab: t[0] }) }));
+    const pt = {}; ptabList.forEach((t) => { pt[t[0]] = ptab === t[0]; });
+
+    const baseLines = [
+      ['Cabinet removal', 'Remove existing top and bottom cabinets', 1, 450],
+      ['Custom cabinets', 'Laminate finish, soft-close hinges (per ft run)', 18, 220],
+      ['Quartz countertop', '20 mm quartz, cutting included', 1, 1200],
+      ['Disposal', 'Debris removal and disposal', 1, 180]
+    ];
+    for (let k = 0; k < extra; k++) baseLines.push(['Installation labour', 'Carpentry installation (per day)', 2, 350]);
+    const lines = baseLines.map((l) => ({ svc: l[0], desc: l[1], qty: l[2], price: money(l[3]), amt: money(l[2] * l[3]) }));
+    const sub = baseLines.reduce((a, l) => a + l[2] * l[3], 0);
+    const dAmt = Math.round(sub * disc) / 100;
+    const gst = Math.round((sub - dAmt) * 9) / 100;
+    const tot = { sub: money(sub), disc: dAmt ? '−' + money(dAmt) : money(0), gst: money(gst), total: money(sub - dAmt + gst) };
+    const discOpts = [[0, 'None'], [5, '5%'], [10, '10%']].map((o) => ({ label: o[1], on: disc === o[0] ? 'on' : '', pick: set({ disc: o[0] }) }));
+
+    const evs = [
+      [['09:00', '09:00–10:00', 'Team briefing', 'int', 'Office']],
+      [['14:00', '14:00–15:30', 'Quote review — Rajesh Kumar', 'appt', 'Video call']],
+      [['10:00', '10:00–11:00', 'Call — Priya Raman', 'appt', 'Phone'], ['15:00', '15:00–16:30', 'Site visit — Ahmad Bin Yusof', 'appt', '22 Tuas Ave 8']],
+      [['11:00', '11:00–12:00', 'Supplier meeting', 'int', 'Ubi office']],
+      [['10:00', '10:00–11:30', 'Site measurement — Tan Wei Ming', 'appt', 'Ang Mo Kio']],
+      [['09:30', '09:30–10:30', 'Consultation — Sarah Goh', 'appt', 'Bishan']],
+      []
+    ];
+    const mk = (e) => ({ time: e[0], span: e[1], title: e[2], cls: 'agenda' + (e[3] === 'appt' ? ' appt' : ''), where: e[4] });
+    const dows = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const strip = dows.map((d, idx) => ({ dow: d, date: String(9 + idx).padStart(2, '0'), cls: idx === 2 ? 'day on' : 'day', has: evs[idx].length > 0 }));
+    const weekList = dows.map((d, idx) => ({ dow: d, date: String(9 + idx).padStart(2, '0'), color: idx === 2 ? '#0F766E' : '#111827', events: evs[idx].map(mk), empty: evs[idx].length === 0 }));
+    const has = { 3: 1, 9: 1, 10: 1, 11: 1, 12: 1, 13: 1, 14: 1, 18: 1, 20: 1, 24: 1, 27: 1 };
+    const month = [];
+    for (let k = 0; k < 42; k++) {
+      let d, out = false;
+      if (k < 6) { d = 26 + k; out = true; } else if (k - 5 <= 30) { d = k - 5; } else { d = k - 35; out = true; }
+      month.push({ d: d, cls: 'mcell' + (out ? ' out' : '') + (!out && d === 11 ? ' today' : ''), has: !out && !!has[d] });
+    }
+    const calOpts = [['day', 'Day'], ['week', 'Week'], ['month', 'Month']].map((o) => ({ label: o[1], on: cal === o[0] ? 'on' : '', pick: set({ cal: o[0] }) }));
+
+    const tasks = [
+      ['Follow up overdue invoice INV-2026-0081', 'High', '09/11 · overdue', 'Siti', true, 'To do'],
+      ['Send revised quote to Tan Wei Ming', 'High', 'Due 12/11', 'Mei Ling', false, 'To do'],
+      ['Confirm aircon servicing slot', 'Medium', 'Due today', 'Daniel', false, 'In progress'],
+      ['Order quartz samples', 'Medium', 'Due 13/11', 'Daniel', false, 'In progress'],
+      ['Prepare December promo flyer', 'Low', 'Due 30/11', 'Mei Ling', false, 'To do'],
+      ['Upload site photos for AY Logistics', 'Low', 'Done 10/11', 'Siti', false, 'Done']
+    ].map((r) => ({ title: r[0], pri: r[1], pc: bc(r[1]), due: r[2], who: r[3], dueColor: r[4] ? '#B42318' : '#344054', cb: r[5] === 'Done' ? 'cb done' : 'cb' }));
+
+    return {
+      go, is, tab, title: titles[screen], back, noBack: !back, plus,
+      showTabs: screen !== 'quoteNew',
+      kpis: [{ label: 'Open quotations', value: 'S$18,420' }, { label: 'Won this month', value: 'S$12,640' }, { label: 'Appointments today', value: '2' }, { label: 'Overdue tasks', value: '1' }],
+      todayEv: evs[2].map(mk), quotesShort: quotes.slice(0, 3), quotes, customers,
+      ptabs, pt,
+      info: [{ k: 'Mobile', v: '+65 9123 4567' }, { k: 'Email', v: 'weiming@example.sg' }, { k: 'Address', v: 'Blk 123 Ang Mo Kio Ave 3, #05-67, Singapore 560123' }, { k: 'Preferred contact', v: 'WhatsApp' }, { k: 'Customer since', v: '14/03/2025' }, { k: 'Notes', v: 'Prefers weekday mornings. Lift booking needed 3 working days ahead.' }],
+      custQuotes: [
+        { no: 'Q-2026-0142', title: 'Kitchen cabinet refurbishment', date: '10/11/2026', amt: money(5995.55), status: 'Sent', bc: bc('Sent') },
+        { no: 'Q-2026-0118', title: 'Bathroom retiling', date: '02/10/2026', amt: money(3270), status: 'Accepted', bc: bc('Accepted') },
+        { no: 'Q-2026-0097', title: 'Living room feature wall', date: '18/08/2026', amt: money(5286), status: 'Expired', bc: bc('Expired') }
+      ],
+      custAppts: [
+        { date: '13/11/2026', time: '10:00', title: 'Site measurement', status: 'Confirmed', bc: bc('Confirmed') },
+        { date: '20/11/2026', time: '14:30', title: 'Material selection', status: 'Pending', bc: bc('Pending') },
+        { date: '05/10/2026', time: '09:00', title: 'Bathroom retiling, day 1', status: 'Completed', bc: bc('Completed') }
+      ],
+      custPays: [
+        { ref: 'INV-2026-0088', date: '02/10/2026', method: 'PayNow', amt: money(3270), status: 'Paid', bc: bc('Paid') },
+        { ref: 'INV-2026-0102', date: '10/11/2026', method: 'Bank transfer', amt: money(2450), status: 'Pending', bc: bc('Pending') }
+      ],
+      custDocs: [{ kind: 'PDF', name: 'Q-2026-0118 signed.pdf', meta: '04/10/2026 · 180 KB' }, { kind: 'IMG', name: 'Kitchen site photos', meta: '12 photos' }, { kind: 'PDF', name: 'HDB floor plan.pdf', meta: '1.1 MB' }],
+      custHist: [
+        { when: '10/11/2026 16:12', what: 'Quotation Q-2026-0142 sent on WhatsApp', who: 'Mei Ling' },
+        { when: '10/11/2026 11:40', what: 'Uploaded 12 site photos', who: 'Daniel' },
+        { when: '08/11/2026 09:05', what: 'Site measurement booked for 13/11/2026', who: 'Mei Ling' },
+        { when: '04/10/2026 18:30', what: 'Payment received: S$3,270.00 by PayNow', who: 'System' },
+        { when: '14/03/2025 10:00', what: 'Customer created', who: 'Mei Ling' }
+      ],
+      lines, tot, discOpts, addLine: () => this.setState({ extra: extra + 1 }),
+      calOpts, strip, weekList, month, dowsShort: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      dayHead: cal === 'month' ? 'Wednesday, 11/11/2026' : 'Wednesday, 11/11/2026',
+      cv: { day: cal === 'day', week: cal === 'week', month: cal === 'month', notMonth: cal !== 'month', dayish: cal !== 'week' },
+      tasks,
+      docs: [
+        { kind: 'DOC', name: 'Standard terms & conditions', meta: 'Doc · 09/11/2026' },
+        { kind: 'TBL', name: 'Price list 2026', meta: 'Table · 64 rows' },
+        { kind: 'TBL', name: 'Supplier contacts', meta: 'Table · 18 rows' },
+        { kind: 'NOTE', name: 'Team meeting — 09/11/2026', meta: 'Note' },
+        { kind: 'PDF', name: 'Company profile.pdf', meta: 'File · 2.4 MB' },
+        { kind: 'DIR', name: 'Site photos — AY Logistics', meta: '18 files' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

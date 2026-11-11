@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blueprint</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#111827;background:#fff}
+*{box-sizing:border-box}
+a{color:#0F766E}a:hover{color:#115E59}
+h1,h2,h3,p,ul{margin:0}
+.h{font-size:12px;font-weight:600;color:#5B6474;letter-spacing:.04em;text-transform:uppercase}
+.card{background:#fff;border:1px solid #E4E7EC;border-radius:10px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-size:12px;font-weight:500;color:#5B6474;padding:8px 10px;background:#F9FAFB;border-bottom:1px solid #E4E7EC}
+.tbl td{padding:9px 10px;border-bottom:1px solid #EEF0F3;vertical-align:top;line-height:1.4}
+li{margin:0 0 6px;line-height:1.5}
+.node{display:inline-block;padding:4px 10px;border-radius:6px;background:#F2F4F7;font-size:13px;font-weight:500}
+.node.root{background:#0F766E;color:#fff}
+</style>
+</helmet>
+<div style="width: 1100px; min-height: 1640px; padding: 56px 64px; display: flex; flex-direction: column; gap: 36px; background: #FFFFFF;">
+  <div>
+    <p class="h">Phase 1 · for approval</p>
+    <h1 style="font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-top: 8px;">Blueprint</h1>
+    <p style="font-size: 15px; color: #475467; margin-top: 8px; line-height: 1.5;">Sitemap, layout rules and screen list for My Business Platform. Colours, type and components are on the Design system board.</p>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 style="font-size: 20px; font-weight: 600;">1. Sitemap</h2>
+    <div class="card" style="padding: 20px 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 20px; font-size: 13px; line-height: 1.7; color: #344054;">
+      <div style="grid-column: 1 / -1;"><span class="node root">Business workspace (tenant)</span> <span style="color: #5B6474;">· business switcher for users in more than one business</span></div>
+      <div><span class="node">Dashboard</span><br>Stat cards<br>Today's schedule<br>Recent quotations<br>Tasks due soon</div>
+      <div><span class="node">Customers</span><br>List: All · Active · Leads · Inactive<br>Customer profile<br>· Info · Quotations · Appointments<br>· Payments · Documents · History</div>
+      <div><span class="node">Quotations</span><br>List: Draft · Sent · Accepted · Expired<br>Quotation builder<br>PDF preview / download<br>Share on WhatsApp / email</div>
+      <div><span class="node">Calendar</span><br>Day · Week · Month<br>Appointment detail<br>Reschedule, reminders</div>
+      <div><span class="node">Tasks</span><br>List view · Board view<br>Priority, deadline, assignee<br>Linked customer</div>
+      <div><span class="node">Documents</span><br>Docs · Tables · Notes · Files<br>Doc editor page<br>Pinned to sidebar</div>
+      <div><span class="node">Settings</span><br>Business profile (UEN, GST)<br>Users &amp; permissions<br>Quotation &amp; GST · Reminders<br>Subscription · Export &amp; backups</div>
+      <div><span class="node">Global</span><br>Search (Ctrl K)<br>New (+) menu<br>Notifications</div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 style="font-size: 20px; font-weight: 600;">2. Layout rules</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div class="card" style="padding: 18px 20px;"><p class="h" style="margin-bottom: 10px;">Desktop ≥ 1024 px</p><ul style="padding-left: 18px; font-size: 13px; color: #344054;"><li>Left sidebar 240 px, grey surface; main nav, Pinned, Settings, user</li><li>Top bar 56 px: breadcrumb, search, New, notifications</li><li>Work area: max 1280 px, 32 px gutters, 24 px between blocks</li><li>Page header: title + count on the left, one primary action on the right</li><li>Detail pages: main column + 320 px side panel</li></ul></div>
+      <div class="card" style="padding: 18px 20px;"><p class="h" style="margin-bottom: 10px;">Tablet 768–1023 px</p><ul style="padding-left: 18px; font-size: 13px; color: #344054;"><li>Sidebar collapses to a 64 px icon rail; opens as an overlay</li><li>Side panels drop below the main column</li><li>Tables keep columns, scroll sideways inside their card</li><li>Calendar week view kept; month shows dots plus count</li></ul></div>
+      <div class="card" style="padding: 18px 20px;"><p class="h" style="margin-bottom: 10px;">Phone &lt; 768 px (iPhone first)</p><ul style="padding-left: 18px; font-size: 13px; color: #344054;"><li>Bottom tab bar: Home, Customers, Quotes, Calendar, More (Tasks, Documents, Settings)</li><li>Top bar 56 px: back or logo, title, search, +</li><li>Tap targets ≥ 44 px, 16 px inputs (no iOS zoom), safe-area padding</li><li>Tables become stacked rows; builder gets a sticky total + PDF / WhatsApp bar</li><li>Week view becomes a day strip + agenda</li></ul></div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 style="font-size: 20px; font-weight: 600;">3. Screen list</h2>
+    <div class="card" style="overflow: hidden;">
+      <table class="tbl">
+        <thead><tr><th style="width: 170px;">Screen</th><th>Desktop</th><th>Phone</th><th style="width: 90px;">Prototype</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight: 600;">Dashboard</td><td>4 stat cards, recent quotations table, Today and Tasks side column</td><td>2 × 2 stat cards, quick actions, agenda, quote rows</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Customers</td><td>View tabs, filter chips, search, table with status and outstanding S$</td><td>Search, filter pills, 72 px rows</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Customer profile</td><td>Header, 4 stat cards, 6 tabs (Info, Quotations, Appointments, Payments, Documents, History)</td><td>Centred header, Call / WhatsApp / Quote, scrolling tabs</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Quotations</td><td>Status tabs, table with total incl. GST</td><td>Rows with amount and status</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Quotation builder</td><td>Customer picker, dates, line items (service, description, qty, unit price, amount), discount, subtotal, GST 9%, total, WhatsApp message preview, A4 preview</td><td>Line-item cards, discount control, sticky total with PDF and WhatsApp</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Calendar</td><td>Day (timeline + detail panel), Week (7-column grid 08:00–18:00), Month (6-week grid)</td><td>Day agenda, week list, month grid with dots</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Tasks</td><td>List table and Board (To do, In progress, Done)</td><td>Rows with 44 px checkbox, priority, due date</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Documents</td><td>Library list + open doc with headings, text and an embedded table</td><td>Filtered list</td><td>Both</td></tr>
+          <tr><td style="font-weight: 600;">Settings</td><td>Section nav, business profile (UEN, GST), users and roles, export and backups</td><td>Grouped rows</td><td>Both</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+    <section class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 style="font-size: 16px; font-weight: 600;">4. Patterns taken from Coda's public pages</h2>
+      <ul style="padding-left: 18px; font-size: 13px; color: #344054;"><li>Each page starts with a title, a short line of context, then the content blocks</li><li>Sections have a heading plus an "Add …" action next to it</li><li>Saved views as tabs above a table (All / By status), filter chips below, search on the right</li><li>"New row" at the end of a table; status shown as coloured pills</li><li>Phone: bottom tab bar with 4 pages + More, back arrow in a compact top bar</li></ul>
+      <p style="font-size: 12px; color: #5B6474; line-height: 1.5;">Only these structural ideas are reused. Colours, logo, type, icons, illustrations and code are all our own: white and teal, Inter, line icons.</p>
+    </section>
+    <section class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+      <h2 style="font-size: 16px; font-weight: 600;">5. Singapore formats &amp; rules</h2>
+      <ul style="padding-left: 18px; font-size: 13px; color: #344054;"><li>Currency SGD, shown as S$1,234.50; 2 decimals; amounts right-aligned</li><li>GST 9% on (subtotal − discount) when the business is GST-registered; turned off otherwise</li><li>Dates DD/MM/YYYY; 24-hour time; week starts Monday</li><li>Phones +65 XXXX XXXX; WhatsApp links use the +65 number</li><li>Addresses: Blk, street, #unit, Singapore 6-digit postal code; UEN on documents</li><li>Quote numbers Q-YYYY-NNNN, invoices INV-YYYY-NNNN</li></ul>
+    </section>
+  </div>
+
+  <section class="card" style="padding: 18px 20px; background: #F7F8FA; display: flex; flex-direction: column; gap: 8px;">
+    <h2 style="font-size: 16px; font-weight: 600;">Not in this phase</h2>
+    <p style="font-size: 13px; color: #344054; line-height: 1.6;">Sample data only: no backend, database, logins, saving, real PDF or WhatsApp sending. After approval, Phase 2 builds the app shell (React + TypeScript + Tailwind) with these tokens, then one section at a time, starting with Customers.</p>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1100,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
